@@ -16,6 +16,8 @@ const menu = {
   hidden: { x: "-100%" },
 };
 
+console.log(menu)
+
 const Navbar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
