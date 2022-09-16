@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-b from-black via-black to-[#1F0027];
+  }
+  li {
+    @apply cursor-pointer whitespace-nowrap text-white/70;
+  }
+
+  button {
+    @apply cursor-pointer whitespace-nowrap;
+  }
+  img {
+    @apply inline-block w-full;
+  }
+  input {
+    @apply h-[60px] p-3 bg-black/20 rounded-md text-lg outline outline-white/30;
+  }
+  p {
+    @apply text-white/70
+  }
+}
