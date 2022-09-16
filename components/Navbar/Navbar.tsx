@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
             <li className=" md:flex hidden">Series</li>
           </ul>
           <NextLink href="/">
-            <div className="md:ml-[5.5rem] ml-16">
+            <div className="md:ml-[5.5rem] ml-16 mt-2">
               <NextImage
                 src={HBO_MAX_WHITE_LOGO}
                 className="cursor-pointer"
