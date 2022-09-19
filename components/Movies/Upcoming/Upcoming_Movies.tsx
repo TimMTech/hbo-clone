@@ -7,11 +7,11 @@ interface Movie {
     poster_path: string
 }
 
-const Upcoming:React.FC<UpcomingResults> = ({upcoming: {results}}) => {
+const Upcoming_Movies:React.FC<UpcomingResults> = ({upcoming: {results}}) => {
     return (
       <div className="text-white p-8">
         <h1 className="text-xl py-4">Upcoming Movies</h1>
-        <div className="flex overflow-x-auto gap-5">
+        <div className="flex overflow-x-auto gap-3 no-scrollbar">
           {results.map((movie: Movie) => {
             const { id, poster_path } = movie;
             return (
@@ -31,4 +31,4 @@ const Upcoming:React.FC<UpcomingResults> = ({upcoming: {results}}) => {
     );
 }
 
-export default Upcoming
+export default Upcoming_Movies

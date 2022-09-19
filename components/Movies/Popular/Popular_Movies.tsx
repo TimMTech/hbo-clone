@@ -7,11 +7,11 @@ interface Movie {
   poster_path: string;
 }
 
-const Popular: React.FC<PopularResults> = ({ popular: {results} }) => {
+const Popular_Movies: React.FC<PopularResults> = ({ popular: {results} }) => {
   return (
     <div className="text-white p-8">
       <h1 className="text-xl py-4">Popular Movies</h1>
-      <div className="flex overflow-x-auto gap-5">
+      <div className="flex overflow-x-auto gap-3 no-scrollbar">
         {results.map((movie: Movie) => {
           const { id, poster_path } = movie;
           return (
@@ -31,4 +31,4 @@ const Popular: React.FC<PopularResults> = ({ popular: {results} }) => {
   );
 };
 
-export default Popular;
+export default Popular_Movies;

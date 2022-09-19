@@ -8,10 +8,21 @@
   padding: 0;
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+  }
+}
+
 
 @layer base {
   body {
-    @apply  bg-gradient-to-b from-black via-black to-[#1F0027];
+    @apply  bg-gradient-to-b from-black via-black to-[#1F0027] bg-repeat-space;
   }
   li {
     @apply cursor-pointer whitespace-nowrap text-white/70;

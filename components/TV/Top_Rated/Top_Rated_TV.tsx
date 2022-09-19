@@ -1,5 +1,5 @@
-interface TopRatedResults {
-  topRated: any;
+interface TopRatedResults_TV {
+  topRated_TV: any;
 }
 
 interface Movie {
@@ -7,11 +7,13 @@ interface Movie {
   poster_path: string;
 }
 
-const TopRated: React.FC<TopRatedResults> = ({ topRated: { results } }) => {
+const TopRated_TV: React.FC<TopRatedResults_TV> = ({topRated_TV : {results}}) => {
   return (
-    <div className="text-white px-8">
-      <h1 className="text-xl py-4">Top Rated Movies</h1>
-      <div className="flex overflow-x-auto gap-5">
+    <div className="md:flex md:flex-row text-white p-8 flex flex-col items-center ">
+      <h1 className="text-3xl py-4 w-[400px] ">
+        Must-Watch Best Rated Series 2022
+      </h1>
+      <div className="flex overflow-x-auto gap-3 no-scrollbar w-full">
         {results.map((movie: Movie) => {
           const { id, poster_path } = movie;
           return (
@@ -31,4 +33,4 @@ const TopRated: React.FC<TopRatedResults> = ({ topRated: { results } }) => {
   );
 };
 
-export default TopRated;
+export default TopRated_TV;
