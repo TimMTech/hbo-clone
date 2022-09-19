@@ -1,10 +1,12 @@
 import type { NextPage } from "next";
-import PlanForm from "../../../components/Forms/PlanForm/PlanForm"
+import PlanForm from "../../../components/Forms/PlanForm/PlanForm";
 
 const PlanPicker: NextPage = () => {
-    return (
-        <div className="w-screen h-screen">ewfewfwefewf</div>
-    )
-}
+  return (
+    <>
+      <PlanForm />
+    </>
+  );
+};
 
-export default PlanPicker
+export default PlanPicker;

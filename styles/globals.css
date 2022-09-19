@@ -8,6 +8,8 @@
   padding: 0;
 }
 
+
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -21,6 +23,8 @@
 
 
 @layer base {
+
+  
   body {
     @apply  bg-gradient-to-b from-black via-black to-[#1F0027] bg-repeat-space;
   }
@@ -29,7 +33,7 @@
   }
 
   button {
-    @apply cursor-pointer whitespace-nowrap;
+    @apply cursor-pointer whitespace-nowrap ;
   }
   img {
     @apply inline-block w-full;

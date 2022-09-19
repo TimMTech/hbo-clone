@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
             : "fixed text-white top-0 w-screen bg-transparent transition-colors duration-500 "
         }
       >
-        <div className="flex justify-between items-center w-full px-8 py-5">
+        <div className="flex justify-between items-center w-full px-8 py-6">
           <ul className="flex gap-6">
             <li className="cursor-pointer">
               <AiOutlineMenu size={25} onClick={handleOpenMenu} />

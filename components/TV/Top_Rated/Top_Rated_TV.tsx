@@ -10,7 +10,7 @@ interface Movie {
 const TopRated_TV: React.FC<TopRatedResults_TV> = ({topRated_TV : {results}}) => {
   return (
     <div className="md:flex md:flex-row text-white p-8 flex flex-col items-center ">
-      <h1 className="text-3xl py-4 w-[400px] ">
+      <h1 className="md:text-left text-center text-3xl py-4 w-[400px] ">
         Must-Watch Best Rated Series 2022
       </h1>
       <div className="flex overflow-x-auto gap-3 no-scrollbar w-full">
