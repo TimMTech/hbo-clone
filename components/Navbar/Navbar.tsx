@@ -1,6 +1,6 @@
 import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NextLink from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import NextImage from "next/image";
@@ -16,10 +16,9 @@ const menu = {
   hidden: { x: "-100%" },
 };
 
-console.log(menu)
-
 const Navbar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [backgroundColor, setBackgroundColor] = useState<boolean>(false);
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
@@ -29,10 +28,33 @@ const Navbar: React.FC = () => {
     setOpenMenu(false);
   };
 
+  useEffect(() => {
+    const changeNavBackground = () => {
+      if (
+        document.body.scrollTop >= 100 ||
+        document.documentElement.scrollTop >= 100
+      ) {
+        setBackgroundColor(true);
+      } else {
+        setBackgroundColor(false);
+      }
+    };
+    window.addEventListener("scroll", changeNavBackground);
+    return () => {
+      window.removeEventListener("scroll", changeNavBackground);
+    };
+  }, [backgroundColor]);
+
   return (
-    <div className="relative z-[99]">
-      <div className="fixed text-white top-0 w-screen">
-        <div className="flex justify-between items-center w-full px-8 pt-8">
+    <nav className="relative z-[99]">
+      <div
+        className={
+          backgroundColor
+            ? "fixed text-white top-0 w-screen bg-black/90 transition-colors duration-500 "
+            : "fixed text-white top-0 w-screen bg-transparent transition-colors duration-500 "
+        }
+      >
+        <div className="flex justify-between items-center w-full px-8 py-5">
           <ul className="flex gap-6">
             <li className="cursor-pointer">
               <AiOutlineMenu size={25} onClick={handleOpenMenu} />
@@ -58,7 +80,7 @@ const Navbar: React.FC = () => {
               <NextLink href={"/auth/signin"}>SIGN IN</NextLink>
             </li>
             <li className="md:flex hidden  bg-white/10 rounded-md px-4 py-2">
-              <NextLink href={"/auth/signin"}>SUBSCRIBE</NextLink>
+              <NextLink href={"/auth/subscribe"}>SUBSCRIBE</NextLink>
             </li>
             <li className="md:hidden">
               <BsFillPersonFill size={30} />
@@ -104,7 +126,7 @@ const Navbar: React.FC = () => {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </nav>
   );
 };
 

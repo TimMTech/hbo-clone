@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 const SigninForm: React.FC = () => {
   interface SignupValues {
@@ -12,12 +12,12 @@ const SigninForm: React.FC = () => {
   });
 
   const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setSignupValues((prevState) => ({
       ...prevState,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   return (
     <div className="text-white flex flex-col justify-center items-center w-screen h-screen">
