@@ -9,7 +9,7 @@ interface Movie {
 
 const Theatres_Movies: React.FC<TheatresResults> = ({ theatres: { results } }) => {
   return (
-    <div className="md:flex md:flex-row flex flex-col justify-center text-white p-4  items-center gap-10 w-full">
+    <div className="md:flex md:flex-row flex flex-col justify-center text-white p-8 items-center gap-10 w-full">
       <div className="md:w-[400px] md:text-left text-center">
         <h1 className="text-xl md:text-3xl py-1 whitespace-nowrap ">
           Movies Currently In Theatres

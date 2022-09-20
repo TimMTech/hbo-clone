@@ -2,7 +2,7 @@ interface TopRatedResults_TV {
   topRated_TV: any;
 }
 
-interface Movie {
+interface TV {
   id: number;
   poster_path: string;
 }
@@ -14,8 +14,8 @@ const TopRated_TV: React.FC<TopRatedResults_TV> = ({topRated_TV : {results}}) =>
         Must-Watch Best Rated Series 2022
       </h1>
       <div className="flex overflow-x-auto gap-3 no-scrollbar w-full">
-        {results.map((movie: Movie) => {
-          const { id, poster_path } = movie;
+        {results.map((tv: TV) => {
+          const { id, poster_path } = tv;
           return (
             <div
               key={id}
