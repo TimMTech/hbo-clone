@@ -56,11 +56,11 @@ const Navbar: React.FC = () => {
       >
         <div className="flex justify-between items-center w-full px-8 py-6">
           <ul className="flex gap-6">
-            <li className="cursor-pointer">
+            <li className="hover:text-white cursor-pointer">
               <AiOutlineMenu size={25} onClick={handleOpenMenu} />
             </li>
-            <li className=" md:flex hidden">Movies</li>
-            <li className=" md:flex hidden">Series</li>
+            <li className="hover:text-white  md:flex hidden">Movies</li>
+            <li className="hover:text-white  md:flex hidden">Series</li>
           </ul>
           <NextLink href="/">
             <div className="md:ml-[5.5rem] ml-16 mt-2">
@@ -73,13 +73,13 @@ const Navbar: React.FC = () => {
             </div>
           </NextLink>
           <ul className="flex items-center justify-center gap-6">
-            <li>
+            <li className="hover:text-white ">
               <AiOutlineSearch size={30} />
             </li>
-            <li className="md:flex hidden">
+            <li className="hover:text-white md:flex hidden">
               <NextLink href={"/auth/signin"}>SIGN IN</NextLink>
             </li>
-            <li className="md:flex hidden  bg-white/10 rounded-md px-4 py-2">
+            <li className="hover:bg-white/80 hover:text-black md:flex hidden bg-white/10 rounded-md px-4 py-2">
               <NextLink href={"/auth/subscribe"}>SUBSCRIBE</NextLink>
             </li>
             <li className="md:hidden">

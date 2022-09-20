@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import SubscribeForm from "../../../components/Forms/SubscribeForm/SubscribeForm";
+import SubscribeForm from "../../../components/Subscribe/Subscribe";
 const Subscribe: NextPage = () => {
   return (
     <>

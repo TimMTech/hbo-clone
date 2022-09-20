@@ -20,8 +20,8 @@ const SubscribeForm: React.FC = () => {
               Max Originals. Plus, stream your favorites from DC, Adult Swim,
               Cartoon Network, and more.
             </p>
-            <button className="px-6 py-3 my-6 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
-              <NextLink href="/auth/subscribe/plan-picker"> CHOOSE A PLAN</NextLink>
+            <button className="hover:bg-none hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-3 my-6 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
+              <NextLink href="/auth/subscribe/plan-picker">CHOOSE A PLAN</NextLink>
             </button>
             <button className="font-semibold pt-4 text-sm text-violet-400/80">
               <NextLink href="/auth/signin"> SIGN IN TO YOUR ACCOUNT</NextLink>

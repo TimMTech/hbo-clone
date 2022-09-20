@@ -5,9 +5,11 @@ interface UserSchema {
     lastName: string,
     email: string,
     password: string,
+    ads: string,
+    billing: string
 }
 
-const userSchema = new mongoose.Schema<UserSchema>({
+const UserTemplate = new mongoose.Schema<UserSchema>({
     firstName: {
         type: String,
         required: true,
@@ -23,7 +25,15 @@ const userSchema = new mongoose.Schema<UserSchema>({
     password: {
         type: String,
         required: true
+    },
+    ads: {
+        type: String,
+        required: true
+    },
+    billing: {
+        type: String,
+        required: true
     }
 })
 
-module.exports = mongoose.models.UserSchema || mongoose.model("User", userSchema)
+module.exports = mongoose.models.User || mongoose.model("User", UserTemplate)

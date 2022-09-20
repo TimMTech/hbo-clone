@@ -11,7 +11,7 @@ const Banner: React.FC = () => {
         </video>
 
         <div className="sm:hidden">
-          <NextImage src={HBO_MAX_BANNER_SMALL_DEVICE} layout="responsive" />
+          <NextImage src={HBO_MAX_BANNER_SMALL_DEVICE} layout="responsive" priority />
         </div>
         <div className="sm:absolute sm:top-[15%] md:top-[20%] lg:top-[25%] top-0 left-0 flex flex-col w-full h-full items-start justify-center text-white px-8">
           <p className="font-thin">HBO Original</p>

@@ -8,7 +8,14 @@
   padding: 0;
 }
 
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: #fff !important;
+  
+}
 
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
@@ -16,36 +23,36 @@
   }
 
   .no-scrollbar {
-    -ms-overflow-style:none;
-    scrollbar-width:none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
-
 @layer base {
-
-  
+  html {
+    @apply h-full bg-gradient-to-b from-black via-black to-[#1F0027];
+  }
   body {
-    @apply  bg-gradient-to-b from-black via-black to-[#1F0027] bg-repeat-space;
+    @apply min-h-full bg-gradient-to-b from-black  to-[#1F0027];
   }
   li {
     @apply cursor-pointer whitespace-nowrap text-white/70;
   }
 
   button {
-    @apply cursor-pointer whitespace-nowrap ;
+    @apply cursor-pointer whitespace-nowrap;
   }
   img {
     @apply inline-block w-full;
   }
   input {
-    @apply h-[60px] p-3 bg-black/20 rounded-md text-lg outline outline-white/30;
+    @apply h-[60px] p-3 bg-transparent rounded-md text-lg outline outline-white/30;
   }
   p {
     @apply text-white/70;
   }
 
   video {
-    @apply min-w-full object-fill 
+    @apply min-w-full object-fill;
   }
 }

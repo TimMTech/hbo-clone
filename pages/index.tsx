@@ -25,9 +25,8 @@ const Home: NextPage = ({
   topRated,
   upcoming,
   topRated_TV,
-  popular_people
+  popular_people,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(popular_people)
   return (
     <>
       <Banner />
@@ -36,7 +35,7 @@ const Home: NextPage = ({
       <TopRated_Movies topRated={topRated} />
       <Upcoming_Movies upcoming={upcoming} />
       <TopRated_TV topRated_TV={topRated_TV} />
-      <Popular_People popular_people={popular_people}/>
+      <Popular_People popular_people={popular_people} />
     </>
   );
 };
@@ -61,7 +60,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       topRated,
       upcoming,
       topRated_TV,
-      popular_people
+      popular_people,
     },
   };
 };

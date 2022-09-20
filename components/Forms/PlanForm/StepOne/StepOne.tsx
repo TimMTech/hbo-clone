@@ -7,21 +7,20 @@ const StepOne: React.FC<StepOneProps> = ({
   handlePlanSelection,
 }) => {
   return (
-    <div className=" text-white flex flex-col justify-center items-center">
-      
-        <h1 className="md:w-full text-3xl py-8 text-center w-[300px]">
-          Save Over 40% When You Prepay for a Year
-        </h1>
+    <div className=" text-white flex  flex-col justify-center items-center w-full h-full">
+      <h1 className="md:w-full text-3xl py-8 text-center w-[300px]">
+        Save Over 40% When You Prepay for a Year
+      </h1>
 
-        <p className="md:w-[500px] w-[300px] text-center text-sm">
-          Sign up for one of our yearly plans by October 30 and save big on your
-          first year. (It&apos;s actually 41.6% compared to 12 months on the
-          monthly plans.)
-        </p>
-      
-      <div className="lg:flex lg:flex-row flex flex-col justify-center items-center gap-6 py-8 ">
-        <div className="w-[430px] h-[370px] flex flex-col items-center justify-between bg-gradient-to-r from-purple-900/20 to-purple-900/70">
-          <div className="flex flex-col items-center justify-center pt-4">
+      <p className="md:w-[500px] w-[300px] text-center text-sm">
+        Sign up for one of our yearly plans by October 30 and save big on your
+        first year. (It&apos;s actually 41.6% compared to 12 months on the
+        monthly plans.)
+      </p>
+
+      <div className="lg:flex lg:flex-row  flex flex-col justify-center items-center gap-6 py-8 ">
+        <div className="w-[430px] h-[370px]  flex flex-col items-center justify-between bg-gradient-to-r from-purple-900/20 to-purple-900/70">
+          <div className="flex flex-col items-center justify-center pt-4 ">
             <h1 className="text-4xl font-bold">With Ads</h1>
             <p className="text-center w-[250px] py-3">
               Watch everything with limited ads for a lower price
