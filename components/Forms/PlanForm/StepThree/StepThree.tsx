@@ -92,7 +92,7 @@ const StepThree: React.FC<StepThreeProps> = ({
           required
         />
       </div>
-      <div className="flex flex-col items-center justify-center p-6 mb-5  ">
+      <div className="flex flex-col items-center justify-center p-6  ">
         <h2 className="text-2xl font-semibold py-2">
           First 7 days free, then $14.99/month{" "}
         </h2>

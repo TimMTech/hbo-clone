@@ -1,11 +1,8 @@
-
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import StepOne from "./StepOne/StepOne";
 import StepThree from "./StepThree/StepThree";
 import StepTwo from "./StepTwo/StepTwo";
-
-
 
 interface Plan {
   ads: string;
@@ -29,10 +26,8 @@ interface PaymentInput {
   stateOrTerritory: string;
 }
 
-
 const PlanForm: React.FC = () => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const [plan, setPlan] = useState<Plan>({
     ads: "",
@@ -141,7 +136,7 @@ const PlanForm: React.FC = () => {
       })
       .then((data) => {
         console.log(data);
-        router.push("/auth/signin")
+        router.push("/auth/signin");
       })
       .catch((error) => {
         console.log(error);
@@ -156,16 +151,17 @@ const PlanForm: React.FC = () => {
             <span className="text-xl font-semibold">{plan.ads}</span>
             <span className="text-xl font-semibold">{plan.billing}</span>
           </div>
-          {Object.values(subscribeValues).every((value) => value !== "") && (
-            <div className="w-full flex justify-between items-center">
-              <span className="text-xl font-semibold">
-                {subscribeValues.firstName} {subscribeValues.lastName}
-              </span>
-              <span className="text-xl font-semibold">
-                {subscribeValues.email}
-              </span>
-            </div>
-          )}
+          {Object.values(subscribeValues).every((value) => value !== "") &&
+            step === "3" && (
+              <div className="w-full flex justify-between items-center">
+                <span className="text-xl font-semibold">
+                  {subscribeValues.firstName} {subscribeValues.lastName}
+                </span>
+                <span className="text-xl font-semibold">
+                  {subscribeValues.email}
+                </span>
+              </div>
+            )}
         </div>
       )}
       <span>STEP {step} OF 3</span>

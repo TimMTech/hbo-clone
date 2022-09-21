@@ -9,7 +9,6 @@ interface Data {
   lastName: string | undefined;
   email: string | undefined;
   password: string | undefined;
-  
 }
 
 const users = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -29,7 +28,7 @@ const users = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         email: req.body.email,
         password: securePassword,
         ads: req.body.ads,
-        billing: req.body.billing
+        billing: req.body.billing,
       });
       user
         .save()
