@@ -93,7 +93,7 @@ const StepThree: React.FC<StepThreeProps> = ({
         />
       </div>
       <div className="flex flex-col items-center justify-center p-6  ">
-        <h2 className="text-2xl font-semibold py-2">
+        <h2 className="text-2xl font-semibold py-2 text-center">
           First 7 days free, then $14.99/month{" "}
         </h2>
         <p className="md:max-w-[600px] text-center max-w-[300px] py-3">

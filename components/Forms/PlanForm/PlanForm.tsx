@@ -51,7 +51,7 @@ const PlanForm: React.FC = () => {
     stateOrTerritory: "",
   });
 
-  const [step, setStep] = useState<string>("1");
+  const [step, setStep] = useState<string>("3");
 
   const handlePlanSelection = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (e.target instanceof HTMLElement) {
