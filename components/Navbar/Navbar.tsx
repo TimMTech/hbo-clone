@@ -1,6 +1,7 @@
 import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import NextLink from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import NextImage from "next/image";
@@ -17,6 +18,9 @@ const menu = {
 };
 
 const Navbar: React.FC = () => {
+
+  const {data: session} = useSession()
+console.log(session)
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [backgroundColor, setBackgroundColor] = useState<boolean>(false);
 
@@ -76,14 +80,25 @@ const Navbar: React.FC = () => {
             <li className="hover:text-white ">
               <AiOutlineSearch size={30} />
             </li>
-            <li className="hover:text-white md:flex hidden">
-              <NextLink href={"/auth/signin"}>SIGN IN</NextLink>
+            <li className="hover:bg-white/80 hover:text-black md:hidden rounded-full bg-white/[0.12] p-[0.4rem]">
+              <NextLink href="/auth/subscribe">
+                <a>
+                  <BsFillPersonFill size={25} />
+                </a>
+              </NextLink>
             </li>
+            {session ? (
+              <li className="hover:text-white md:flex hidden">
+                {session.user?.firstName}
+              </li>
+            ) : (
+              <li className="hover:text-white md:flex hidden">
+                <NextLink href={"/auth/signin"}>SIGN IN</NextLink>
+              </li>
+            )}
+
             <li className="hover:bg-white/80 hover:text-black md:flex hidden bg-white/10 rounded-md px-4 py-2">
               <NextLink href={"/auth/subscribe"}>SUBSCRIBE</NextLink>
-            </li>
-            <li className="md:hidden">
-              <BsFillPersonFill size={30} />
             </li>
           </ul>
         </div>

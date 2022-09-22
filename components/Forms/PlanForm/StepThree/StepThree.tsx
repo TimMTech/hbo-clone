@@ -1,3 +1,5 @@
+import React from "react";
+
 interface StepThreeProps {
   paymentValues: {
     user_id: string | undefined;
@@ -17,6 +19,9 @@ const StepThree: React.FC<StepThreeProps> = ({
   handlePaymentChange,
   handlePaymentSubmit,
 }) => {
+
+ 
+
   return (
     <form
       onSubmit={handlePaymentSubmit}
@@ -44,8 +49,9 @@ const StepThree: React.FC<StepThreeProps> = ({
           placeholder="Card Number"
           onChange={(e) => handlePaymentChange(e)}
           value={paymentValues.cardNumber}
-          maxLength={16}
+          maxLength={19}
           required
+         
         />
       </div>
       <div className="flex w-full gap-5">

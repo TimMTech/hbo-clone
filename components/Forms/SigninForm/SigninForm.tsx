@@ -1,28 +1,46 @@
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 
 const SigninForm: React.FC = () => {
-  interface SignupValues {
+
+ 
+
+  
+  interface SigninValues {
     email: string;
     password: string;
   }
 
-  const [signupValues, setSignupValues] = useState<SignupValues>({
+  const [signinValues, setSigninValues] = useState<SigninValues>({
     email: "",
     password: "",
   });
 
-  const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSigninChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setSignupValues((prevState) => ({
+    setSigninValues((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleSigninSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    let options = { redirect: false, ...signinValues };
+    const res = await signIn("credentials", options);
+    if (res?.error) {
+      console.log("Error");
+    } else {
+      console.log("Logged In")
+      
+    }
   };
 
   return (
     <div className="text-white flex flex-col justify-center items-center w-screen h-screen">
       <h1 className="text-3xl pt-10 pb-6">Sign In</h1>
       <form
+        onSubmit={handleSigninSubmit}
         action="POST"
         className="md:w-[75%]  flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20 h-[70%] w-full max-w-[900px] px-20 rounded-md"
       >
@@ -32,15 +50,15 @@ const SigninForm: React.FC = () => {
             name="email"
             type="text"
             placeholder="Email Address"
-            value={signupValues.email}
-            onChange={(e) => handleSignupChange(e)}
+            value={signinValues.email}
+            onChange={(e) => handleSigninChange(e)}
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
-            value={signupValues.password}
-            onChange={(e) => handleSignupChange(e)}
+            value={signinValues.password}
+            onChange={(e) => handleSigninChange(e)}
           />
         </div>
         <div className="flex gap-6 py-10">

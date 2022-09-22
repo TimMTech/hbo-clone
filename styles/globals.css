@@ -30,10 +30,10 @@ input:-webkit-autofill:active {
 
 @layer base {
   html {
-    @apply h-full bg-gradient-to-b from-black via-black to-[#1F0027];
+    @apply h-full bg-gradient-to-b from-black  to-[#1F0027];
   }
   body {
-    @apply min-h-full bg-gradient-to-b from-black  to-[#1F0027];
+    @apply min-h-full bg-gradient-to-b from-black via-black to-[#1F0027];
   }
   li {
     @apply cursor-pointer whitespace-nowrap text-white/70;

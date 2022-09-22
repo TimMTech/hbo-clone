@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import StepOne from "./StepOne/StepOne";
 import StepThree from "./StepThree/StepThree";
 import StepTwo from "./StepTwo/StepTwo";
+import { join } from "path";
 
 interface Plan {
   ads: string;
@@ -51,7 +52,7 @@ const PlanForm: React.FC = () => {
     stateOrTerritory: "",
   });
 
-  const [step, setStep] = useState<string>("3");
+  const [step, setStep] = useState<string>("1");
 
   const handlePlanSelection = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (e.target instanceof HTMLElement) {
@@ -82,7 +83,19 @@ const PlanForm: React.FC = () => {
 
   const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target instanceof HTMLElement) {
-      const { name, value } = e.target;
+      let { name, value } = e.target;
+      if (name === "cardNumber") {
+        let regex = value.split("-").join("")
+        if (regex.length > 0) {
+          value = regex.match(/.{1,4}/g)!.join("-");
+        }
+      }
+      if (name === "exp") {
+        let regex = value.split("/").join("")
+        if (regex.length > 0) {
+          value = regex.match(/.{1,2}/g)!.join("/")
+        }
+      }
       setPaymentValues((prevState) => ({
         ...prevState,
         [name]: value,
