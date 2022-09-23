@@ -1,5 +1,5 @@
 interface Movie {
-  id: number;
+  id: string;
 }
 
 export const fetchPopularMovies: Function = async () => {
@@ -33,3 +33,28 @@ export const fetchTheatresMovies: Function = async () => {
   const nowPlaying = await res.json()
   return nowPlaying
 };
+
+export const fetchSingleMovie: Function = async (id:Movie) => {
+
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}}?api_key=b802b4a83ff17e57417a263b981797fb&page=1`
+  );
+  const singleMovie = await res.json()
+  return singleMovie
+}
+
+export const fetchSingleMovieSimilar: Function = async (id: Movie) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}}/similar?api_key=b802b4a83ff17e57417a263b981797fb&page=1`
+  );
+  const similarMovies = await res.json()
+  return similarMovies
+}
+
+export const fetchSingleMovieCredits: Function = async (id: Movie) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}}/credits?api_key=b802b4a83ff17e57417a263b981797fb&page=1`
+  );
+  const movieCredits = await res.json()
+  return movieCredits
+}

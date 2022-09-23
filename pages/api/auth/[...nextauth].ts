@@ -1,5 +1,4 @@
 import NextAuth, { DefaultSession } from "next-auth";
-import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "../../../database/dbConnect";
 
@@ -59,6 +58,7 @@ export default NextAuth({
       }
       return session
     },
+    
   },
   jwt: {
     secret: "SecretHBOClone",
@@ -67,4 +67,7 @@ export default NextAuth({
     strategy: "jwt",
     maxAge: 1 * 60 * 60,
   },
+  pages: {
+    signIn: "/auth/signin"
+  }
 });

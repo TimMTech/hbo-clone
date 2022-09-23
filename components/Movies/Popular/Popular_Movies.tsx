@@ -1,3 +1,6 @@
+import NextLink from "next/link"
+
+
 interface PopularResults {
   popular: any;
 }
@@ -8,6 +11,7 @@ interface Movie {
 }
 
 const Popular_Movies: React.FC<PopularResults> = ({ popular: {results} }) => {
+
   return (
     <div className="text-white p-8">
       <h1 className="text-xl py-4">Popular Movies</h1>
@@ -17,12 +21,15 @@ const Popular_Movies: React.FC<PopularResults> = ({ popular: {results} }) => {
           return (
             <div
               key={id}
-              className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0 "
+              className=" sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0"
             >
-              <img
-                src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                alt=""
-              />
+              <NextLink href={`/movie/${id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                  alt=""
+                  className="hover:border-2 hover:border-indigo-600 cursor-pointer"
+                />
+              </NextLink>
             </div>
           );
         })}
