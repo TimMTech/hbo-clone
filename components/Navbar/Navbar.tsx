@@ -20,7 +20,7 @@ const menu = {
 const Navbar: React.FC = () => {
 
   const {data: session} = useSession()
-console.log(session)
+
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [backgroundColor, setBackgroundColor] = useState<boolean>(false);
 

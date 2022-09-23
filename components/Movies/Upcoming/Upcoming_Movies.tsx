@@ -1,3 +1,5 @@
+import NextLink from "next/link"
+
 interface UpcomingResults {
     upcoming: any
 }
@@ -19,10 +21,13 @@ const Upcoming_Movies:React.FC<UpcomingResults> = ({upcoming: {results}}) => {
                 key={id}
                 className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0 "
               >
-                <img
-                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                  alt=""
-                />
+                <NextLink href={`/movie/${id}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                    alt=""
+                    className="hover:border-2 hover:border-indigo-600 cursor-pointer"
+                  />
+                </NextLink>
               </div>
             );
           })}

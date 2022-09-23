@@ -1,3 +1,5 @@
+import NextLink from "next/link"
+
 interface TheatresResults {
   theatres: any;
 }
@@ -24,10 +26,13 @@ const Theatres_Movies: React.FC<TheatresResults> = ({ theatres: { results } }) =
               key={id}
               className="sm:w-[25%] md:w-[40%] lg:w-[22%] w-[25%] flex-shrink-0 "
             >
-              <img
-                src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                alt=""
-              />
+              <NextLink href={`/movie/${id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                  alt=""
+                  className="hover:border-2 hover:border-indigo-600 cursor-pointer"
+                />
+              </NextLink>
             </div>
           );
         })}

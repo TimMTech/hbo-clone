@@ -22,7 +22,7 @@ interface CastAndCrew {
   credit_id: string;
 }
 
-const SingleMovie: React.FC<SingleMovieProps> = ({
+const Single_Movie: React.FC<SingleMovieProps> = ({
   singleMovie,
   similarMovies: { results },
   movieCredits: { cast, crew },
@@ -31,7 +31,7 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
   const [directorDropDown, setDirectorDropDown] = useState<boolean>(false);
   const [producerDropDown, setProducerDropDown] = useState<boolean>(false);
   const [writerDropDown, setWriterDropDown] = useState<boolean>(false);
-  const [musicDropDown, setMusicDropDown] = useState<boolean>(false);
+  const [soundDropDown, setSoundDropDown] = useState<boolean>(false);
 
   return (
     <div className="w-full h-full">
@@ -74,7 +74,7 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
             );
           })}
         </div>
-        <div className="md:grid md:grid-cols-2 md:gap-0 flex flex-col gap-4 py-4 ">
+        <div className=" md:grid md:grid-cols-2 md:gap-0 lg:text-lg text-sm flex flex-col gap-4 py-4 ">
           <div className="flex flex-col gap-4">
             <div>
               <div className="w-full flex items-center justify-between">
@@ -82,13 +82,13 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
                 {castDropDown ? (
                   <AiOutlineUp
                     size={30}
-                    className="sm:hidden"
+                    className="sm:hidden cursor-pointer"
                     onClick={() => setCastDropDown(!castDropDown)}
                   />
                 ) : (
                   <AiOutlineDown
                     size={30}
-                    className="sm:hidden"
+                    className="sm:hidden cursor-pointer"
                     onClick={() => setCastDropDown(!castDropDown)}
                   />
                 )}
@@ -96,7 +96,7 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
 
               <div
                 className={`sm:grid sm:grid-cols-2 ${
-                  castDropDown ? "flex flex-col" : "hidden"
+                  castDropDown ? "grid grid-cols-2" : "hidden"
                 }`}
               >
                 {cast.slice(0, 6).map((actors: CastAndCrew) => {
@@ -108,8 +108,19 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
             <div>
               <div className="w-full flex items-center justify-between">
                 <h1 className="text-lg">Producers</h1>
-
-                <AiOutlineDown id="producers" size={30} className="sm:hidden" />
+                {producerDropDown ? (
+                  <AiOutlineUp
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setProducerDropDown(!producerDropDown)}
+                  />
+                ) : (
+                  <AiOutlineDown
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setProducerDropDown(!producerDropDown)}
+                  />
+                )}{" "}
               </div>
               {crew
                 .filter(
@@ -124,7 +135,9 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
                   return (
                     <div
                       key={credit_id}
-                      className="sm:grid sm:grid-cols-2 hidden"
+                      className={`sm:grid sm:grid-cols-2 ${
+                        producerDropDown ? "grid grid-cols-2" : "hidden"
+                      }`}
                     >
                       <p>{job}</p>
                       <p>{name}</p>
@@ -135,8 +148,19 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
             <div>
               <div className="w-full flex items-center justify-between">
                 <h1 className="text-lg">Directors</h1>
-
-                <AiOutlineDown id="directors" size={30} className="sm:hidden" />
+                {directorDropDown ? (
+                  <AiOutlineUp
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setDirectorDropDown(!directorDropDown)}
+                  />
+                ) : (
+                  <AiOutlineDown
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setDirectorDropDown(!directorDropDown)}
+                  />
+                )}{" "}
               </div>
               {crew
                 .filter(
@@ -147,7 +171,9 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
                   return (
                     <div
                       key={credit_id}
-                      className="sm:grid sm:grid-cols-2 hidden"
+                      className={`sm:grid sm:grid-cols-2 ${
+                        directorDropDown ? "grid grid-cols-2" : "hidden"
+                      }`}
                     >
                       <p>{job}</p>
                       <p>{name}</p>
@@ -160,8 +186,19 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
             <div>
               <div className="w-full flex items-center justify-between">
                 <h1 className="text-lg">Writers</h1>
-
-                <AiOutlineDown id="writers" size={30} className="sm:hidden" />
+                {writerDropDown ? (
+                  <AiOutlineUp
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setWriterDropDown(!writerDropDown)}
+                  />
+                ) : (
+                  <AiOutlineDown
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setWriterDropDown(!writerDropDown)}
+                  />
+                )}{" "}
               </div>
               {crew
                 .filter(
@@ -175,7 +212,9 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
                   return (
                     <div
                       key={credit_id}
-                      className="sm:grid sm:grid-cols-2 hidden"
+                      className={`sm:grid sm:grid-cols-2 ${
+                        writerDropDown ? "grid grid-cols-2" : "hidden"
+                      }`}
                     >
                       <p>{job}</p>
                       <p>{name}</p>
@@ -186,8 +225,19 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
             <div>
               <div className="w-full flex items-center justify-between">
                 <h1 className="text-lg">Music</h1>
-
-                <AiOutlineDown id="music" size={30} className="sm:hidden" />
+                {soundDropDown ? (
+                  <AiOutlineUp
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setSoundDropDown(!soundDropDown)}
+                  />
+                ) : (
+                  <AiOutlineDown
+                    size={30}
+                    className="sm:hidden cursor-pointer"
+                    onClick={() => setSoundDropDown(!soundDropDown)}
+                  />
+                )}{" "}
               </div>
               {crew
                 .filter((sound: CastAndCrew) => sound.department === "Sound")
@@ -199,7 +249,9 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
                   return (
                     <div
                       key={credit_id}
-                      className="sm:grid sm:grid-cols-2 hidden"
+                      className={`sm:grid sm:grid-cols-2 ${
+                        soundDropDown ? "grid grid-cols-2" : "hidden"
+                      }`}
                     >
                       <p>{job}</p>
                       <p>{name}</p>
@@ -214,4 +266,4 @@ const SingleMovie: React.FC<SingleMovieProps> = ({
   );
 };
 
-export default SingleMovie;
+export default Single_Movie;
