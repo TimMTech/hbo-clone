@@ -39,9 +39,10 @@ const Single_TV: React.FC<SingleTVProps> = ({
 
   useEffect(() => {
     const getFirstSeason = async () => {
-      const first_season = seasons.map(
-        (season: Season) => season.season_number
-      );
+      const first_season = seasons
+        .map((season: Season) => season.season_number)
+        .slice(0, 1);
+
       fetch(
         `https://api.themoviedb.org/3/tv/${id}/season/${first_season}?api_key=b802b4a83ff17e57417a263b981797fb&page=1`
       )
