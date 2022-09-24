@@ -17,7 +17,7 @@ const Show: NextPage = ({singleTV}:InferGetServerSidePropsType<typeof getServerS
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
   const singleTV = await fetchSingleTV(id);
- 
+ console.log(singleTV)
   return {
     props: {
       singleTV,

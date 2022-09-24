@@ -55,4 +55,8 @@ input:-webkit-autofill:active {
   video {
     @apply min-w-full object-fill;
   }
+
+  select {
+    @apply my-0 mx-auto block outline-none w-full text-2xl rounded-sm bg-[rgba(255,255,255,0.12)] text-white
+  }
 }
