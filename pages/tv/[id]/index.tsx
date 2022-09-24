@@ -3,13 +3,14 @@ import type {
   GetServerSideProps,
   InferGetServerSidePropsType,
 } from "next";
-import { fetchSingleTV } from "../../../utils/fetchTV/fetchTV";
+import { fetchSingleTV, fetchSimilarTV } from "../../../utils/fetchTV/fetchTV";
 import Single_TV from "../../../components/TV/Single_TV/Single_TV";
 
-const Show: NextPage = ({singleTV}:InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Show: NextPage = ({singleTV, similarTV}:InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    console.log(similarTV)
   return (
     <>
-      <Single_TV singleTV={singleTV} />
+      <Single_TV singleTV={singleTV} similarTV={similarTV}/>
     </>
   );
 };
@@ -17,10 +18,12 @@ const Show: NextPage = ({singleTV}:InferGetServerSidePropsType<typeof getServerS
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
   const singleTV = await fetchSingleTV(id);
- console.log(singleTV)
+  const similarTV = await fetchSimilarTV(id)
+ 
   return {
     props: {
       singleTV,
+      similarTV
       
     },
   };

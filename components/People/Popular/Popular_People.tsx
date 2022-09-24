@@ -38,6 +38,7 @@ const Popular_People: React.FC<PopularPeopleResults> = ({
               <img
                 src={`https://image.tmdb.org/t/p/original/${profile_path}`}
                 alt=""
+                className="h-full"
               />
             </div>
           );

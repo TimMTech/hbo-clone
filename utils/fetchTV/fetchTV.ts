@@ -26,3 +26,11 @@ export const fetchSingleTVSeasons: Function = async (id: TV, season_number:TV) =
   const singleTVSeasons = await res.json()
   return singleTVSeasons
 };
+
+export const fetchSimilarTV: Function = async (id: TV) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=b802b4a83ff17e57417a263b981797fb&page=1`
+  );
+    const similarTV = await res.json()
+    return similarTV
+}

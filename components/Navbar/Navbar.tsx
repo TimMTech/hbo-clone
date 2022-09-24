@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
       <div
         className={
           backgroundColor
-            ? "fixed text-white top-0 w-screen bg-black/90 transition-colors duration-500 "
+            ? "fixed text-white top-0 w-screen bg-matte-black transition-colors duration-500 "
             : "fixed text-white top-0 w-screen bg-transparent transition-colors duration-500 "
         }
       >

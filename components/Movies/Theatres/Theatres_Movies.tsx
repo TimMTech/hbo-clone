@@ -30,7 +30,7 @@ const Theatres_Movies: React.FC<TheatresResults> = ({ theatres: { results } }) =
                 <img
                   src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                   alt=""
-                  className="hover:border-2 hover:border-indigo-600 cursor-pointer"
+                  className="hover:border-2 hover:border-indigo-600 cursor-pointer h-full"
                 />
               </NextLink>
             </div>
