@@ -2,6 +2,7 @@ import NextLink from "next/link";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { convertRuntime } from "../../../utils/conversions/convert";
 import React, { useState } from "react";
+import {useSession} from "next-auth/react"
 
 interface SingleMovieProps {
   singleMovie: any;
@@ -27,12 +28,15 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   similarMovies: { results },
   movieCredits: { cast, crew },
 }) => {
+
+  const {data: session} = useSession()
+
   const [castDropDown, setCastDropDown] = useState<boolean>(false);
   const [directorDropDown, setDirectorDropDown] = useState<boolean>(false);
   const [producerDropDown, setProducerDropDown] = useState<boolean>(false);
   const [writerDropDown, setWriterDropDown] = useState<boolean>(false);
   const [soundDropDown, setSoundDropDown] = useState<boolean>(false);
-
+console.log(singleMovie)
   return (
     <div className="w-full h-full">
       <img
@@ -41,14 +45,24 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
         className=" sm:h-[320px]  md:h-[390px] lg:h-[500px] relative filter brightness-50 "
       />
 
-      <div className="sm:absolute sm:top-[25%] md:top-[35%] lg:top-[50%] text-white p-4 flex flex-col gap-3 ">
+      <div className="sm:absolute sm:top-[22%] md:top-[32%] lg:top-[46%] text-white p-4 flex flex-col items-start gap-3 ">
         <h1 className="lg:text-4xl text-3xl font-bold">
           {singleMovie.original_title}
         </h1>
         <div className="text-white/60 w-full flex gap-5">
           <span>{convertRuntime(singleMovie.runtime)}</span>
           <span>{singleMovie.release_date.slice(0, 4)}</span>
+          <span>{singleMovie.vote_average.toFixed(1)}</span>
         </div>
+        {session ? (
+          <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
+            Add To Favourite
+          </button>
+        ) : (
+          <button className="hover:bg-none  hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
+            <NextLink href="/auth/subscribe">SIGN UP</NextLink>
+          </button>
+        )}
       </div>
       <p className="sm:py-4 md:text-xl text-lg font-extralight px-4 max-w-[780px]">
         {singleMovie.overview}
