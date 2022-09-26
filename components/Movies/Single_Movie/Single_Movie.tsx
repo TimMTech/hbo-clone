@@ -47,17 +47,19 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
 
   return (
     <div className="w-full h-full">
-      <div className=" sm:h-[380px] md:h-[480px] lg:h-[580px] h-[570px] relative  filter brightness-50 ">
+      <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative  filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
           src={backdrop_path}
           alt=""
           layout="fill"
           objectFit="cover"
+          quality={100}
+          
         />
       </div>
 
-      <div className="sm:absolute sm:top-[30%] md:top-[43%] lg:top-[55%] text-white p-4 flex flex-col items-start gap-3 ">
+      <div className="sm:absolute sm:top-[30%] md:top-[43%] lg:top-[58%] text-white p-4 flex flex-col items-start gap-3 ">
         <h1 className="lg:text-4xl text-3xl font-bold">
           {original_title}
         </h1>

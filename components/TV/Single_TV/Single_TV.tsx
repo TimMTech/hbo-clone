@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { convertRuntime } from "../../../utils/conversions/convert";
 import { externalNextImageLoader } from "../../../utils/loaders/externalLoaders";
 import { AiOutlineDown } from "react-icons/ai";
+import { useSession } from "next-auth/react";
 import NextLink from "next/link";
 import NextImage from "next/image";
 
@@ -35,8 +36,11 @@ const Single_TV: React.FC<SingleTVProps> = ({
   singleTV: { seasons, name, genres, overview, backdrop_path, id },
   similarTV: { results },
 }) => {
+  const { data: session } = useSession();
+
   const [episodes, setEpisodes] = useState<any>();
   const [selectSeason, setSelectSeason] = useState<boolean>(false);
+
   const [season, setSeason] = useState<any>();
 
   const handleSeasonToggle = () => {
@@ -54,6 +58,7 @@ const Single_TV: React.FC<SingleTVProps> = ({
       .then((data) => {
         setEpisodes(data.episodes);
         setSeason(data.season_number);
+       
       })
       .catch((error) => {
         console.log(error);
@@ -97,6 +102,15 @@ const Single_TV: React.FC<SingleTVProps> = ({
 
       <div className="sm:absolute sm:top-[35%] md:top-[48%] lg:top-[62%] text-white p-4 flex flex-col items-start gap-3 ">
         <h1 className="lg:text-4xl text-3xl font-bold">{name}</h1>
+        {session ? (
+          <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
+            Add To Favourite
+          </button>
+        ) : (
+          <button className="hover:bg-none  hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
+            <NextLink href="/auth/subscribe">SIGN UP</NextLink>
+          </button>
+        )}
         <div className="flex items-center gap-4">
           {genres.map((genre: Genre) => {
             const { id, name } = genre;
@@ -111,15 +125,15 @@ const Single_TV: React.FC<SingleTVProps> = ({
       <p className="sm:py-4 md:text-xl text-lg font-extralight px-4 max-w-[780px]">
         {overview}
       </p>
-      <div className="md:w-[250px] text-white m-4  bg-[rgba(255,255,255,0.12)] rounded-md">
+      <div
+        onClick={handleSeasonToggle}
+        className="md:w-[250px] text-white m-4  bg-[rgba(255,255,255,0.12)] rounded-md cursor-pointer"
+      >
         <div className="flex items-center justify-between px-4 border p-4 rounded-md ">
           <h2 className="font-bold">
             {season > 0 ? "Season " + season : "Specials"}
           </h2>
-          <AiOutlineDown
-            onClick={handleSeasonToggle}
-            className="cursor-pointer"
-          />
+          <AiOutlineDown />
         </div>
         {selectSeason && (
           <div className=" flex flex-col flex-grow overflow-y-auto h-full max-h-[100px] items-start justify-start  text-white  rounded-md">
@@ -127,7 +141,8 @@ const Single_TV: React.FC<SingleTVProps> = ({
               const { season_number } = season;
               return (
                 <div
-                  className="hover:bg-white/50 hover:rounded-md p-4 w-full cursor-pointer"
+                  tabIndex={season_number}
+                  className="focus:bg-white/50 focus:rounded-md  hover:bg-white/50   hover:rounded-md my-[0.1rem] pl-6 p-4 w-full cursor-pointer"
                   key={season_number}
                   data-set={season_number}
                   onClick={(e) => handleSeasonChange(e)}
