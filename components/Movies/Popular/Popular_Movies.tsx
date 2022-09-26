@@ -25,7 +25,7 @@ const Popular_Movies: React.FC<PopularResults> = ({ popular: {results} }) => {
             >
               <NextLink href={`/movie/${id}`}>
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                  src={`https://image.tmdb.org/t/p/original${poster_path}`}
                   alt=""
                   className="hover:border-2 hover:border-indigo-600 cursor-pointer h-full"
                 />

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { convertRuntime } from "../../../utils/conversions/convert";
+import { externalNextImageLoader } from "../../../utils/loaders/externalLoaders";
 import { AiOutlineDown } from "react-icons/ai";
 import NextLink from "next/link";
+import NextImage from "next/image";
 
 interface SingleTVProps {
   singleTV: any;
@@ -79,26 +81,32 @@ const Single_TV: React.FC<SingleTVProps> = ({
         });
     };
     getFirstSeason();
-  }, []);
+  }, [id, seasons]);
 
   return (
     <div className="w-full h-full">
-      <img
-        src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
-        alt=""
-        className=" sm:h-[320px]  md:h-[390px] lg:h-[500px] relative filter brightness-50 "
-      />
+      <div className=" sm:h-[380px] md:h-[480px] lg:h-[580px] h-[570px] relative filter brightness-50 ">
+        <NextImage
+          loader={externalNextImageLoader}
+          src={backdrop_path}
+          alt=""
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
 
-      <div className="sm:absolute sm:top-[25%] md:top-[35%] lg:top-[50%] text-white p-4 flex flex-col gap-3 ">
+      <div className="sm:absolute sm:top-[35%] md:top-[48%] lg:top-[62%] text-white p-4 flex flex-col items-start gap-3 ">
         <h1 className="lg:text-4xl text-3xl font-bold">{name}</h1>
-        {genres.map((genre: Genre) => {
-          const { id, name } = genre;
-          return (
-            <p key={id} className="text-lg font-semibold">
-              {name}
-            </p>
-          );
-        })}
+        <div className="flex items-center gap-4">
+          {genres.map((genre: Genre) => {
+            const { id, name } = genre;
+            return (
+              <p key={id} className="text-sm font-semibold">
+                {name}
+              </p>
+            );
+          })}
+        </div>
       </div>
       <p className="sm:py-4 md:text-xl text-lg font-extralight px-4 max-w-[780px]">
         {overview}
@@ -140,8 +148,9 @@ const Single_TV: React.FC<SingleTVProps> = ({
             return (
               <div key={episode_number} className="text-white">
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${still_path}`}
+                  src={`https://image.tmdb.org/t/p/original${still_path}`}
                   alt=""
+                  className=""
                 />
                 <div className="pt-2 pb-4">
                   <h2 className="font-bold">

@@ -1,4 +1,5 @@
 import HBO_MAX_EMMY_LOGO from "/public/static/image/HBO_MAX_EMMY_LOGO.png";
+import NextLink from "next/link"
 import NextImage from "next/image";
 interface PopularPeopleResults {
   popular_people: any;
@@ -35,11 +36,13 @@ const Popular_People: React.FC<PopularPeopleResults> = ({
               key={id}
               className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0 "
             >
-              <img
-                src={`https://image.tmdb.org/t/p/original/${profile_path}`}
-                alt=""
-                className="h-full"
-              />
+              <NextLink href={`/people/${id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/original${profile_path}`}
+                  alt=""
+                  className="hover:border-2 hover:border-indigo-600 cursor-pointer h-full"
+                />
+              </NextLink>
             </div>
           );
         })}

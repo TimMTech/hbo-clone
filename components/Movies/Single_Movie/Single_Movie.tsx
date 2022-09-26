@@ -1,8 +1,10 @@
 import NextLink from "next/link";
+import NextImage from "next/image";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { convertRuntime } from "../../../utils/conversions/convert";
+import { externalNextImageLoader } from "../../../utils/loaders/externalLoaders";
 import React, { useState } from "react";
-import {useSession} from "next-auth/react"
+import { useSession } from "next-auth/react";
 
 interface SingleMovieProps {
   singleMovie: any;
@@ -24,35 +26,45 @@ interface CastAndCrew {
 }
 
 const Single_Movie: React.FC<SingleMovieProps> = ({
-  singleMovie,
+  singleMovie: {
+    backdrop_path,
+    original_title,
+    runtime,
+    release_date,
+    vote_average,
+    overview,
+  },
   similarMovies: { results },
   movieCredits: { cast, crew },
 }) => {
-
-  const {data: session} = useSession()
+  const { data: session } = useSession();
 
   const [castDropDown, setCastDropDown] = useState<boolean>(false);
   const [directorDropDown, setDirectorDropDown] = useState<boolean>(false);
   const [producerDropDown, setProducerDropDown] = useState<boolean>(false);
   const [writerDropDown, setWriterDropDown] = useState<boolean>(false);
   const [soundDropDown, setSoundDropDown] = useState<boolean>(false);
-console.log(singleMovie)
+
   return (
     <div className="w-full h-full">
-      <img
-        src={`https://image.tmdb.org/t/p/original/${singleMovie.backdrop_path}`}
-        alt=""
-        className=" sm:h-[320px]  md:h-[390px] lg:h-[500px] relative filter brightness-50 "
-      />
+      <div className=" sm:h-[380px] md:h-[480px] lg:h-[580px] h-[570px] relative  filter brightness-50 ">
+        <NextImage
+          loader={externalNextImageLoader}
+          src={backdrop_path}
+          alt=""
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
 
-      <div className="sm:absolute sm:top-[22%] md:top-[32%] lg:top-[46%] text-white p-4 flex flex-col items-start gap-3 ">
+      <div className="sm:absolute sm:top-[30%] md:top-[43%] lg:top-[55%] text-white p-4 flex flex-col items-start gap-3 ">
         <h1 className="lg:text-4xl text-3xl font-bold">
-          {singleMovie.original_title}
+          {original_title}
         </h1>
         <div className="text-white/60 w-full flex gap-5">
-          <span>{convertRuntime(singleMovie.runtime)}</span>
-          <span>{singleMovie.release_date.slice(0, 4)}</span>
-          <span>{singleMovie.vote_average.toFixed(1)}</span>
+          <span>{convertRuntime(runtime)}</span>
+          <span>{release_date.slice(0, 4)}</span>
+          <span>{vote_average.toFixed(1)}</span>
         </div>
         {session ? (
           <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
@@ -65,7 +77,7 @@ console.log(singleMovie)
         )}
       </div>
       <p className="sm:py-4 md:text-xl text-lg font-extralight px-4 max-w-[780px]">
-        {singleMovie.overview}
+        {overview}
       </p>
       <div className="text-white p-4">
         <h1 className="text-xl pb-4">More Like This</h1>

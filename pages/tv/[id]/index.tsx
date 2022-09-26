@@ -7,7 +7,7 @@ import { fetchSingleTV, fetchSimilarTV } from "../../../utils/fetchTV/fetchTV";
 import Single_TV from "../../../components/TV/Single_TV/Single_TV";
 
 const Show: NextPage = ({singleTV, similarTV}:InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    console.log(similarTV)
+    
   return (
     <>
       <Single_TV singleTV={singleTV} similarTV={similarTV}/>
