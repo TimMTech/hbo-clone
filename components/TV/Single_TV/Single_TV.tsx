@@ -100,7 +100,7 @@ const Single_TV: React.FC<SingleTVProps> = ({
         />
       </div>
 
-      <div className="sm:absolute sm:top-[35%] md:top-[48%] lg:top-[62%] text-white p-4 flex flex-col items-start gap-3 ">
+      <div className="sm:absolute sm:top-[30%] md:top-[43%] lg:top-[56%] text-white p-4 flex flex-col items-start gap-3 ">
         <h1 className="lg:text-4xl text-3xl font-bold">{name}</h1>
         {session ? (
           <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
@@ -125,11 +125,11 @@ const Single_TV: React.FC<SingleTVProps> = ({
       <p className="sm:py-4 md:text-xl text-lg font-extralight px-4 max-w-[780px]">
         {overview}
       </p>
-      <div
-        onClick={handleSeasonToggle}
-        className="md:w-[250px] text-white m-4  bg-[rgba(255,255,255,0.12)] rounded-md cursor-pointer"
-      >
-        <div className="flex items-center justify-between px-4 border p-4 rounded-md ">
+      <div className="md:w-[250px] text-white m-4  bg-[rgba(255,255,255,0.12)] rounded-md cursor-pointer">
+        <div
+          onClick={handleSeasonToggle}
+          className="flex items-center justify-between px-4 border p-4 rounded-md "
+        >
           <h2 className="font-bold">
             {season > 0 ? "Season " + season : "Specials"}
           </h2>

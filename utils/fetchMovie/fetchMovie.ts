@@ -1,5 +1,6 @@
 interface Movie {
   id: string;
+  page: number;
 }
 
 export const fetchPopularMovies: Function = async () => {
@@ -58,3 +59,12 @@ export const fetchSingleMovieCredits: Function = async (id: Movie) => {
   const movieCredits = await res.json()
   return movieCredits
 }
+
+export const fetchPopularPagination: Function = async(page: Movie) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=b802b4a83ff17e57417a263b981797fb&page=${page}`
+  );
+  const popularPaginated = await res.json()
+  return popularPaginated
+}
+

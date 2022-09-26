@@ -36,3 +36,5 @@ export const convertDOB = (date: string) => {
   let options:Options = {year: "numeric", month: "short", day: "numeric"}
   return birthDay.toLocaleDateString("en-US", options)
 };
+
+

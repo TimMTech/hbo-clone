@@ -17,6 +17,7 @@ input:-webkit-autofill:active {
   
 }
 
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;

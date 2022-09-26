@@ -63,8 +63,12 @@ const Navbar: React.FC = () => {
             <li className="hover:text-white cursor-pointer">
               <AiOutlineMenu size={25} onClick={handleOpenMenu} />
             </li>
-            <li className="hover:text-white  md:flex hidden">Movies</li>
-            <li className="hover:text-white  md:flex hidden">Series</li>
+            <li className="hover:text-white  md:flex hidden">
+              <NextLink href={"/movie"}>Movies</NextLink>
+            </li>
+            <li className="hover:text-white  md:flex hidden">
+              <NextLink href={"/tv"}>Series</NextLink>
+            </li>
           </ul>
           <NextLink href="/">
             <div className="md:ml-[5.5rem] ml-16 mt-2">
