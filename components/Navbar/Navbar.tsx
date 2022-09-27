@@ -1,4 +1,5 @@
 import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
+import { GoDashboard } from "react-icons/go";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
@@ -18,8 +19,7 @@ const menu = {
 };
 
 const Navbar: React.FC = () => {
-
-  const {data: session} = useSession()
+  const { data: session } = useSession();
 
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [backgroundColor, setBackgroundColor] = useState<boolean>(false);
@@ -71,38 +71,44 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
           <NextLink href="/">
-            <div className="md:ml-[5.5rem] ml-16 mt-2">
+            <div className="md:ml-[5.6rem] ml-[4.4rem] mt-2 ">
               <NextImage
                 src={HBO_MAX_WHITE_LOGO}
-                className="cursor-pointer"
+                className="cursor-pointer "
                 height={20}
                 width={120}
               />
             </div>
           </NextLink>
-          <ul className="flex items-center justify-center gap-6">
+          <ul className=" flex items-center justify-center gap-6">
             <li className="hover:text-white ">
               <AiOutlineSearch size={30} />
             </li>
-            <li className="hover:bg-white/80 hover:text-black md:hidden rounded-full bg-white/[0.12] p-[0.4rem]">
-              <NextLink href="/auth/subscribe">
-                <a>
-                  <BsFillPersonFill size={25} />
-                </a>
-              </NextLink>
-            </li>
+
             {session ? (
-              <li className="hover:text-white md:flex hidden">
-                {session.user?.firstName}
+              <li className="hover:text-white md:px-3 ">
+                <NextLink href={`/user/${session?.user._id}`}>
+                  <a>
+                    <GoDashboard size={30} />
+                  </a>
+                </NextLink>
               </li>
             ) : (
-              <li className="hover:text-white md:flex hidden">
-                <NextLink href={"/auth/signin"}>SIGN IN</NextLink>
-              </li>
+              <ul>
+                <li className="hover:bg-white/80 hover:text-black md:hidden rounded-full bg-white/[0.12] p-[0.4rem]">
+                  <NextLink href="/auth/subscribe">
+                    <a>
+                      <BsFillPersonFill size={25} />
+                    </a>
+                  </NextLink>
+                </li>
+                <li className="hover:text-white md:flex hidden">
+                  <NextLink href="/auth/signin">SIGN IN</NextLink>
+                </li>
+              </ul>
             )}
-
             <li className="hover:bg-white/80 hover:text-black md:flex hidden bg-white/10 rounded-md px-4 py-2">
-              <NextLink href={"/auth/subscribe"}>SUBSCRIBE</NextLink>
+              <NextLink href="/auth/subscribe">SUBSCRIBE</NextLink>
             </li>
           </ul>
         </div>
@@ -116,7 +122,7 @@ const Navbar: React.FC = () => {
                 animate="visible"
                 exit="hidden"
                 transition={{ ease: "easeOut", duration: 0.5 }}
-                className="fixed left-0 top-0 w-screen h-screen bg-black/70"
+                className="md:hidden fixed left-0 top-0 w-screen h-screen bg-black/70"
               />
 
               <motion.div
@@ -125,7 +131,7 @@ const Navbar: React.FC = () => {
                 animate="visible"
                 exit="hidden"
                 transition={{ ease: "easeOut", duration: 0.5 }}
-                className="fixed left-0 top-0 w-[40%] h-screen bg-[rgb(15,15,15)] "
+                className="md:hidden fixed left-0 top-0 w-[40%] h-screen bg-[rgb(15,15,15)] "
               >
                 <ul className=" text-white/50 font-semibold flex flex-col items-start gap-4 w-full h-full  px-4 pt-4">
                   <AiOutlineClose
@@ -133,12 +139,16 @@ const Navbar: React.FC = () => {
                     className="cursor-pointer my-4"
                     onClick={handleCloseMenu}
                   />
-                  <li className="pl-1">
+                  <li className="hover:text-white">
                     <NextLink href={"/"}>Home</NextLink>
                   </li>
 
-                  <li className="pl-1">Movies</li>
-                  <li className="pl-1">Series</li>
+                  <li className="hover:text-white">
+                    <NextLink href={"/movie"}>Movies</NextLink>
+                  </li>
+                  <li className="hover:text-white">
+                    <NextLink href={"/tv"}>Series</NextLink>
+                  </li>
                 </ul>
               </motion.div>
             </>

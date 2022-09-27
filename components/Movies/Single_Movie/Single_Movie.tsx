@@ -57,6 +57,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
           quality={100}
           
         />
+        <div className="image-inset"></div>
       </div>
 
       <div className="sm:absolute sm:top-[30%] md:top-[43%] lg:top-[58%] text-white p-4 flex flex-col items-start gap-3 ">

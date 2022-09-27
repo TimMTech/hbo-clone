@@ -33,7 +33,7 @@ interface TV {
 }
 
 const Single_TV: React.FC<SingleTVProps> = ({
-  singleTV: { seasons, name, genres, overview, backdrop_path, id },
+  singleTV: { seasons, name, genres, overview, backdrop_path, poster_path, id },
   similarTV: { results },
 }) => {
   const { data: session } = useSession();
@@ -93,11 +93,12 @@ const Single_TV: React.FC<SingleTVProps> = ({
       <div className=" sm:h-[380px] md:h-[480px] lg:h-[580px] h-[570px] relative filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
-          src={backdrop_path}
+          src={backdrop_path || poster_path}
           alt=""
           layout="fill"
           objectFit="cover"
         />
+        <div className="image-inset"></div>
       </div>
 
       <div className="sm:absolute sm:top-[30%] md:top-[43%] lg:top-[56%] text-white p-4 flex flex-col items-start gap-3 ">

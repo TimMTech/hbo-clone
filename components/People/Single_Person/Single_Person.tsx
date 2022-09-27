@@ -20,6 +20,7 @@ const Single_Person: React.FC<SinglePersonProps> = ({
           layout="fill"
           objectFit="cover"
         />
+        <div className="image-inset"></div>
       </div>
       <div className="sm:w-[50%] sm:mt-16 max-h-full overflow-y-auto  text-white flex flex-col gap-4 p-4 ">
         <h1 className="text-3xl">{name}</h1>

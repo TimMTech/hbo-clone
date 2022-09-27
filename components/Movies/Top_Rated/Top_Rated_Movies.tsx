@@ -11,7 +11,7 @@ interface Movie {
 
 const TopRated_Movies: React.FC<TopRatedResults> = ({ topRated: { results } }) => {
   return (
-    <div className="text-white px-8">
+    <div className="text-white p-8">
       <h1 className="text-xl py-4">Top Rated Movies</h1>
       <div className="flex overflow-x-auto gap-3 no-scrollbar">
         {results.map((movie: Movie) => {

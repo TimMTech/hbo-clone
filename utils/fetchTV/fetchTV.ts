@@ -1,6 +1,7 @@
 interface TV {
   id: string;
   season_number: string;
+  page:number;
 }
 
 export const fetchTopRatedTV: Function = async () => {
@@ -33,4 +34,13 @@ export const fetchSimilarTV: Function = async (id: TV) => {
   );
     const similarTV = await res.json()
     return similarTV
+}
+
+
+export const fetchPopularPagination: Function = async(page:TV) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/popular?api_key=b802b4a83ff17e57417a263b981797fb&page=${page}`
+  );
+  const popularPaginated = await res.json()
+  return popularPaginated
 }

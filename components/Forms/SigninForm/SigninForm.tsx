@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+
+interface SigninValues {
+  email: string;
+  password: string;
+}
 
 const SigninForm: React.FC = () => {
-
- 
-
-  
-  interface SigninValues {
-    email: string;
-    password: string;
-  }
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const [signinValues, setSigninValues] = useState<SigninValues>({
     email: "",
@@ -25,14 +25,14 @@ const SigninForm: React.FC = () => {
   };
 
   const handleSigninSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     let options = { redirect: false, ...signinValues };
     const res = await signIn("credentials", options);
     if (res?.error) {
       console.log("Error");
-    } else {
-      console.log("Logged In")
-      
+    }
+    if (res?.ok) {
+      router.push(`/user/${session?.user._id}`);
     }
   };
 
@@ -40,7 +40,6 @@ const SigninForm: React.FC = () => {
     <div className="text-white flex flex-col justify-center items-center w-screen h-screen">
       <h1 className="text-3xl pt-10 pb-6">Sign In</h1>
       <form
-        
         onSubmit={handleSigninSubmit}
         action="POST"
         className="md:w-[75%]  flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20 h-[70%] w-full max-w-[900px] px-20 rounded-md"
@@ -75,7 +74,10 @@ const SigninForm: React.FC = () => {
         </div>
         <div className="flex flex-col gap-2 items-start">
           <p>Do you have a Google account?</p>
-          <button type="button" className="px-6 py-3 my-3 bg-gray-600/40 rounded-md">
+          <button
+            type="button"
+            className="px-6 py-3 my-3 bg-gray-600/40 rounded-md"
+          >
             SIGN IN WITH GOOGLE
           </button>
         </div>

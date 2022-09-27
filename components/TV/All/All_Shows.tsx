@@ -1,20 +1,20 @@
-import NextLink from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { limitPages } from "../../../utils/limitAPI/limit";
 import ReactPaginate from "react-paginate";
+import NextLink from "next/link";
+import { limitPages } from "../../../utils/limitAPI/limit";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-interface AllMoviesProps {
+interface AllShowsProps {
   popularPaginated: any;
 }
 
-interface Movie {
+interface TV {
   id: string;
   poster_path: string;
   page: string;
 }
 
-const All_Movies: React.FC<AllMoviesProps> = ({
+const All_Shows: React.FC<AllShowsProps> = ({
   popularPaginated: { results, total_pages, page },
 }) => {
   const router = useRouter();
@@ -31,20 +31,17 @@ const All_Movies: React.FC<AllMoviesProps> = ({
       query: currentQuery,
     });
   };
-
-  
-
   return (
     <div className="w-full h-full">
       {!loading && (
         <div className="mt-20 ">
-          <h1 className="text-white pl-6 font-bold text-2xl">All Movies</h1>
+          <h1 className="text-white pl-6 font-bold text-2xl">All Shows</h1>
           <div className="md:grid-cols-4 grid grid-cols-3 p-6 gap-3 ">
-            {results.map((movie: Movie) => {
-              const { id, poster_path } = movie;
+            {results.map((tv: TV) => {
+              const { id, poster_path } = tv;
               return (
                 <div key={id} className="w-full h-full">
-                  <NextLink href={`/movie/${id}`}>
+                  <NextLink href={`/tv/${id}`}>
                     <img
                       src={`https://image.tmdb.org/t/p/original${poster_path}`}
                       alt=""
@@ -75,4 +72,4 @@ const All_Movies: React.FC<AllMoviesProps> = ({
   );
 };
 
-export default All_Movies;
+export default All_Shows;
