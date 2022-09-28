@@ -1,5 +1,6 @@
 import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import { GoDashboard } from "react-icons/go";
+import { signOut } from "next-auth/react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
@@ -22,10 +23,15 @@ const Navbar: React.FC = () => {
   const { data: session } = useSession();
 
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [openProfileMenu, setOpenProfileMenu] = useState<boolean>(false);
   const [backgroundColor, setBackgroundColor] = useState<boolean>(false);
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleOpenProfileMenu = () => {
+    setOpenProfileMenu(!openProfileMenu);
   };
 
   const handleCloseMenu = () => {
@@ -90,13 +96,28 @@ const Navbar: React.FC = () => {
             </li>
 
             {session ? (
-              <li className="hover:text-white ">
-                <NextLink href={`/user/${session?.user._id}`}>
-                  <a>
-                    <GoDashboard size={30} />
-                  </a>
-                </NextLink>
-              </li>
+              <ul>
+                <li className="hover:text-white ">
+                  <GoDashboard size={30} onClick={handleOpenProfileMenu} />
+                </li>
+                {openProfileMenu && (
+                  <ul className="absolute flex flex-col justify-evenly items-start bg-matte-black right-[3%] mt-2 rounded-md p-1 w-[150px]">
+                    <li className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5">
+                      My Stuff
+                    </li>
+                    <li className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5">
+                      Settings
+                    </li>
+                    <li className=" border-white/20 border w-full my-1 "></li>
+                    <li
+                      className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5"
+                      onClick={() => signOut()}
+                    >
+                      Sign Out
+                    </li>
+                  </ul>
+                )}
+              </ul>
             ) : (
               <ul className="flex items-center justify-center gap-6">
                 <li className="hover:bg-white hover:text-black md:hidden rounded-full bg-white/[0.12] p-[0.4rem]">

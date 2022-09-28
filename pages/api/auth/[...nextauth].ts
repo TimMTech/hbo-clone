@@ -56,6 +56,7 @@ export default NextAuth({
       if (token) {
         session.user = token
       }
+    
       return session
     },
     

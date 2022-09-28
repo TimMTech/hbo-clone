@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -8,7 +8,7 @@ interface SigninValues {
 }
 
 const SigninForm: React.FC = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   const [signinValues, setSigninValues] = useState<SigninValues>({
@@ -30,11 +30,19 @@ const SigninForm: React.FC = () => {
     const res = await signIn("credentials", options);
     if (res?.error) {
       console.log("Error");
+    } else {
+      console.log("logged in")
     }
-    if (res?.ok) {
-      router.push(`/user/${session?.user._id}`);
-    }
+    
   };
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push({
+        pathname: `/user/${session?.user._id}`
+      })
+    }
+  }, [router, session?.user._id, status])
 
   return (
     <div className="text-white flex flex-col justify-center items-center w-screen h-screen">
