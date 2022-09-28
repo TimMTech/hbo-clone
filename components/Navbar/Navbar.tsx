@@ -64,8 +64,8 @@ const Navbar: React.FC = () => {
             : "fixed text-white top-0 w-screen bg-transparent transition-colors duration-500 "
         }
       >
-        <div className="flex justify-between items-center w-full px-8 py-6">
-          <ul className="flex gap-6">
+        <div className="flex justify-between items-center w-full px-8 h-[75px]">
+          <ul className="flex items-center justify-center gap-4">
             <li className="hover:text-white cursor-pointer">
               <AiOutlineMenu size={25} onClick={handleOpenMenu} />
             </li>
@@ -78,19 +78,19 @@ const Navbar: React.FC = () => {
           </ul>
           <NextLink href="/">
             <div
-              className={`md:ml-[5.6rem] ml-[4.4rem] mt-2 ${
-                session && "md:ml-[-4.8rem]"
+              className={`md:ml-24 flex ml-16 ${
+                session && "md:mr-[10.9rem] mr-3"
               }`}
             >
               <NextImage
                 src={HBO_MAX_WHITE_LOGO}
-                className="cursor-pointer "
+                className="cursor-pointer"
                 height={20}
                 width={120}
               />
             </div>
           </NextLink>
-          <ul className=" flex items-center justify-center gap-6">
+          <ul className=" flex items-center justify-center gap-4">
             <li className="hover:text-white ">
               <AiOutlineSearch size={30} />
             </li>
@@ -98,7 +98,7 @@ const Navbar: React.FC = () => {
             {session ? (
               <ul>
                 <li className="hover:text-white ">
-                  <GoDashboard size={30} onClick={handleOpenProfileMenu} />
+                  <GoDashboard size={27} onClick={handleOpenProfileMenu} />
                 </li>
                 {openProfileMenu && (
                   <ul className="absolute flex flex-col justify-evenly items-start bg-matte-black right-[3%] mt-2 rounded-md p-1 w-[150px]">
@@ -147,7 +147,7 @@ const Navbar: React.FC = () => {
                 animate="visible"
                 exit="hidden"
                 transition={{ ease: "easeOut", duration: 0.5 }}
-                className="md:hidden fixed left-0 top-0 w-screen h-screen bg-black/70"
+                className=" fixed left-0 top-0 w-screen h-screen bg-black/70"
               />
 
               <motion.div
@@ -156,7 +156,7 @@ const Navbar: React.FC = () => {
                 animate="visible"
                 exit="hidden"
                 transition={{ ease: "easeOut", duration: 0.5 }}
-                className="md:hidden fixed left-0 top-0 w-[40%] h-screen bg-[rgb(15,15,15)] "
+                className=" fixed left-0 top-0 w-[40%] h-screen bg-[rgb(15,15,15)] "
               >
                 <ul className=" text-white/50 font-semibold flex flex-col items-start gap-4 w-full h-full  px-4 pt-4">
                   <AiOutlineClose
