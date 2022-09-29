@@ -15,7 +15,7 @@ const Popular_People: React.FC<PopularPeopleResults> = ({
 }) => {
   return (
     <div className=" text-white flex flex-col items-center ">
-      <div className="flex items-center rounded-3xl shadow-xl shadow-gray-300/70 mx-8 mb-8 ">
+      <div className="flex items-center rounded-lg shadow-lg shadow-gray-300/70 mx-8 mb-8 ">
         <NextImage src={HBO_MAX_EMMY_LOGO} width={275} height={200} />
 
         <div className="px-8">

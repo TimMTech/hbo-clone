@@ -16,6 +16,7 @@ const Theatres_Movies: React.FC<TheatresResults> = ({ theatres: { results } }) =
         <h1 className="text-xl md:text-3xl py-1 whitespace-nowrap">
           Movies Currently In Theatres
         </h1>
+        
         <p>Check out dates to catch award winning flicks in theatres.</p>
       </div>
       <div className="flex overflow-x-auto gap-1 w-full no-scrollbar px-8">
