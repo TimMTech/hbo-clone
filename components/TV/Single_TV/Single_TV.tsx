@@ -182,26 +182,27 @@ const Single_TV: React.FC<SingleTVProps> = ({
             })}
         </div>
       </div>
-
-      <h1 className="text-white pt-2 px-8">More Like This</h1>
-      <div className="flex overflow-x-auto gap-1 no-scrollbar w-full py-4 px-8 ">
-        {results.map((tv: TV) => {
-          const { id, poster_path } = tv;
-          return (
-            <div
-              key={id}
-              className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[38%]  flex-shrink-0 "
-            >
-              <NextLink href={`/tv/${id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                  alt=""
-                  className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer h-full"
-                />
-              </NextLink>
-            </div>
-          );
-        })}
+      <div className="text-white">
+        <h1 className="text-xl pt-2 px-8">More Like This</h1>
+        <div className="flex overflow-x-auto gap-1 no-scrollbar w-full py-4 px-8 ">
+          {results.map((tv: TV) => {
+            const { id, poster_path } = tv;
+            return (
+              <div
+                key={id}
+                className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%]  flex-shrink-0 "
+              >
+                <NextLink href={`/tv/${id}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                    alt=""
+                    className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer h-full"
+                  />
+                </NextLink>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
