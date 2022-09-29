@@ -46,7 +46,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   const [soundDropDown, setSoundDropDown] = useState<boolean>(false);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full px-8">
       <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative  filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
@@ -60,7 +60,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
         <div className="image-inset"></div>
       </div>
 
-      <div className="sm:absolute sm:top-[30%] md:top-[43%] lg:top-[58%] text-white p-4 flex flex-col items-start gap-3 ">
+      <div className=" text-white  flex flex-col items-start gap-3 ">
         <h1 className="lg:text-4xl text-3xl font-bold">
           {original_title}
         </h1>
@@ -79,10 +79,10 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
           </button>
         )}
       </div>
-      <p className="sm:py-4 md:text-xl text-lg font-extralight px-4 max-w-[780px]">
+      <p className=" md:text-xl text-lg font-extralight  max-w-[780px] py-4">
         {overview}
       </p>
-      <div className="text-white p-4">
+      <div className="text-white">
         <h1 className="text-xl pb-4">More Like This</h1>
         <div className="flex overflow-x-auto gap-3 no-scrollbar">
           {results.map((similar: SimilarMovies) => {

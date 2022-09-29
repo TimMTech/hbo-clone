@@ -1,7 +1,6 @@
 import NextImage from "next/image";
 import NextLink from "next/link";
 import HBO_MAX_BANNER_SMALL_DEVICE from "/public/static/image/HBO_MAX_BANNER_SMALL_DEVICE.jpeg";
-import Test_Image from "/public/static/image/Test_Image.jpeg";
 
 const Banner: React.FC = () => {
   return (
@@ -10,6 +9,8 @@ const Banner: React.FC = () => {
         <video autoPlay loop muted className="sm:flex hidden">
           <source src="static/video/BANNER_VIDEO.mp4" type="video/mp4" />
         </video>
+        <div className="sm:absolute sm:image-inset" />
+        
 
         <div className="sm:hidden relative mt-[-3rem]">
           <NextImage src={HBO_MAX_BANNER_SMALL_DEVICE} layout="responsive" priority />

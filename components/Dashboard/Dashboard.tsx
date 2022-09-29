@@ -16,7 +16,7 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
         <button className="hover:border-2 hover:border-purple-600 border-2 border-transparent hover:bg-black text-white text-lg font-bold px-6 py-2 bg-gray-400/25 rounded-md">
           SETTINGS
         </button>
-        <div className="md:px-12 lg:px-16 w-full px-7">
+        <div className="md:px-12 lg:px-16 w-full px-8">
           <div className="flex gap-10 items-center">
             <h2 className="lg:text-2xl hover:border-b-2 hover:border-b-white border-b-2 border-b-transparent leading-8 text-white text-lg font-semibold py-2 cursor-pointer">
               My List
