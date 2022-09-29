@@ -46,7 +46,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   const [soundDropDown, setSoundDropDown] = useState<boolean>(false);
 
   return (
-    <div className="w-full h-full px-8">
+    <div className="w-full h-full">
       <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative  filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
@@ -55,55 +55,53 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
           layout="fill"
           objectFit="cover"
           quality={100}
-          
         />
         <div className="image-inset"></div>
       </div>
-
-      <div className=" text-white  flex flex-col items-start gap-3 ">
-        <h1 className="lg:text-4xl text-3xl font-bold">
-          {original_title}
-        </h1>
-        <div className="text-white/60 w-full flex gap-5">
-          <span>{convertRuntime(runtime)}</span>
-          <span>{release_date.slice(0, 4)}</span>
-          <span>{vote_average.toFixed(1)}</span>
+      <div className="px-8">
+        <div className=" text-white  flex flex-col items-start gap-3">
+          <h1 className="lg:text-4xl text-3xl font-bold">{original_title}</h1>
+          <div className="text-white/60 w-full flex gap-5">
+            <span>{convertRuntime(runtime)}</span>
+            <span>{release_date.slice(0, 4)}</span>
+            <span>{vote_average.toFixed(1)}</span>
+          </div>
+          {session ? (
+            <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
+              Add To Favourite
+            </button>
+          ) : (
+            <button className="hover:bg-none  hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
+              <NextLink href="/auth/subscribe">SIGN UP</NextLink>
+            </button>
+          )}
         </div>
-        {session ? (
-          <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
-            Add To Favourite
-          </button>
-        ) : (
-          <button className="hover:bg-none  hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
-            <NextLink href="/auth/subscribe">SIGN UP</NextLink>
-          </button>
-        )}
+        <p className=" md:text-xl text-lg font-extralight  max-w-[780px] py-4">
+          {overview}
+        </p>
       </div>
-      <p className=" md:text-xl text-lg font-extralight  max-w-[780px] py-4">
-        {overview}
-      </p>
       <div className="text-white">
-        <h1 className="text-xl pb-4">More Like This</h1>
-        <div className="flex overflow-x-auto gap-3 no-scrollbar">
+        <h1 className="text-xl pb-4 px-8">More Like This</h1>
+        <div className="flex overflow-x-auto gap-1 no-scrollbar px-8">
           {results.map((similar: SimilarMovies) => {
             const { id, poster_path } = similar;
             return (
               <div
                 key={id}
-                className=" sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0"
+                className=" sm:w-[30%] md:w-[24%] lg:w-[17%] w-[38%] flex-shrink-0"
               >
                 <NextLink href={`/movie/${id}`}>
                   <img
                     src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                     alt=""
-                    className="hover:border-2 hover:border-indigo-600 cursor-pointer h-full"
+                    className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer h-full"
                   />
                 </NextLink>
               </div>
             );
           })}
         </div>
-        <div className=" md:grid md:grid-cols-2 md:gap-0 lg:text-lg text-sm flex flex-col gap-4 py-4 ">
+        <div className=" md:grid md:grid-cols-2 md:gap-0 lg:text-lg text-sm flex flex-col gap-4 py-4 px-8 ">
           <div className="flex flex-col gap-4">
             <div>
               <div className="w-full flex items-center justify-between">

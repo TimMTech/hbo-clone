@@ -32,8 +32,6 @@ const All_Movies: React.FC<AllMoviesProps> = ({
     });
   };
 
-  
-
   return (
     <div className="w-full h-full">
       {!loading && (
@@ -55,20 +53,21 @@ const All_Movies: React.FC<AllMoviesProps> = ({
               );
             })}
           </div>
-
-          <ReactPaginate
-            previousLabel={"Prev"}
-            nextLabel={"Next"}
-            nextClassName=""
-            previousClassName=""
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            activeClassName={"text-purple-500"}
-            containerClassName="w-full flex justify-between p-4 bg-indigo-800"
-            pageCount={limitPages(total_pages)}
-            initialPage={page - 1}
-            onPageChange={handleNextPage}
-          />
+          
+            <ReactPaginate
+              previousLabel={"Prev"}
+              nextLabel={"Next"}
+              nextClassName=""
+              previousClassName=""
+              breakLabel={"..."}
+              breakClassName={"break-me"}
+              activeClassName={"text-purple-500"}
+              containerClassName="w-full flex justify-between p-4 bg-indigo-800"
+              pageCount={limitPages(total_pages)}
+              initialPage={page - 1}
+              onPageChange={handleNextPage}
+            />
+         
         </div>
       )}
     </div>

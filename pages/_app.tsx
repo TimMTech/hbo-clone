@@ -3,10 +3,10 @@ import type { AppProps } from "next/app";
 import Navbar from "../components/Navbar/Navbar";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
-import {Session} from "next-auth"
+import { Session } from "next-auth";
 
 
-function MyApp({ Component, pageProps }: AppProps<{session: Session}>) {
+function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   return (
     <>
       <Head>
