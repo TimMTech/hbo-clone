@@ -156,24 +156,26 @@ const Navbar: React.FC = () => {
                 animate="visible"
                 exit="hidden"
                 transition={{ ease: "easeOut", duration: 0.5 }}
-                className=" fixed left-0 top-0 w-[40%] h-screen bg-[rgb(15,15,15)] "
+                className="md:w-[240px] lg:w-[310px] w-[225px] fixed left-0 top-0  h-screen bg-[rgb(15,15,15)] "
               >
-                <ul className=" text-white/50 font-semibold flex flex-col items-start gap-4 w-full h-full  px-4 pt-4">
+                <ul className="md:pl-10 lg:pl-14 text-white/50 font-semibold flex flex-col items-start gap-4 w-full h-full pl-6 mt-10">
                   <AiOutlineClose
                     size={25}
-                    className="cursor-pointer my-4"
+                    className="hover:text-white cursor-pointer"
                     onClick={handleCloseMenu}
                   />
-                  <li className="hover:text-white">
-                    <NextLink href={"/"}>Home</NextLink>
-                  </li>
+                  <ul className="lg:text-2xl pl-1 flex flex-col gap-3">
+                    <li className="hover:text-white">
+                      <NextLink href={"/"}>Home</NextLink>
+                    </li>
 
-                  <li className="hover:text-white">
-                    <NextLink href={"/movie"}>Movies</NextLink>
-                  </li>
-                  <li className="hover:text-white">
-                    <NextLink href={"/tv"}>Series</NextLink>
-                  </li>
+                    <li className="hover:text-white">
+                      <NextLink href={"/movie"}>Movies</NextLink>
+                    </li>
+                    <li className="hover:text-white">
+                      <NextLink href={"/tv"}>Series</NextLink>
+                    </li>
+                  </ul>
                 </ul>
               </motion.div>
             </>
