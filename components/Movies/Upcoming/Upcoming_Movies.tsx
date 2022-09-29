@@ -11,9 +11,9 @@ interface Movie {
 
 const Upcoming_Movies:React.FC<UpcomingResults> = ({upcoming: {results}}) => {
     return (
-      <div className="text-white p-8">
-        <h1 className="text-xl py-4">Upcoming Movies</h1>
-        <div className="flex overflow-x-auto gap-3 no-scrollbar">
+      <div className="text-white">
+        <h1 className="text-xl py-4 px-8">Upcoming Movies</h1>
+        <div className="flex overflow-x-auto gap-1 no-scrollbar px-8">
           {results.map((movie: Movie) => {
             const { id, poster_path } = movie;
             return (
@@ -25,7 +25,7 @@ const Upcoming_Movies:React.FC<UpcomingResults> = ({upcoming: {results}}) => {
                   <img
                     src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                     alt=""
-                    className="hover:border-2 hover:border-indigo-600 cursor-pointer h-full"
+                    className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer h-full"
                   />
                 </NextLink>
               </div>

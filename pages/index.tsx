@@ -17,6 +17,7 @@ import Upcoming_Movies from "../components/Movies/Upcoming/Upcoming_Movies";
 import Theatres_Movies from "../components/Movies/Theatres/Theatres_Movies";
 import TopRated_TV from "../components/TV/Top_Rated/Top_Rated_TV";
 import Popular_People from "../components/People/Popular/Popular_People";
+import Footer from "../components/Footer/Footer"
 
 const Home: NextPage = ({
   popular,
@@ -34,6 +35,7 @@ const Home: NextPage = ({
       <Upcoming_Movies upcoming={upcoming} />
       <TopRated_TV topRated_TV={topRated_TV} />
       <Popular_People popular_people={popular_people} />
+      <Footer />
     </>
   );
 };

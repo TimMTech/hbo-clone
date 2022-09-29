@@ -11,14 +11,14 @@ interface Movie {
 
 const Theatres_Movies: React.FC<TheatresResults> = ({ theatres: { results } }) => {
   return (
-    <div className="md:flex md:flex-row flex flex-col justify-center text-white p-8 items-center gap-10 w-full">
-      <div className="md:w-[400px] md:text-left text-center">
-        <h1 className="text-xl md:text-3xl py-1 whitespace-nowrap ">
+    <div className="md:flex md:flex-row flex flex-col justify-center text-white pt-8 items-center gap-10 w-full">
+      <div className="md:w-[400px] md:text-left text-center px-8">
+        <h1 className="text-xl md:text-3xl py-1 whitespace-nowrap">
           Movies Currently In Theatres
         </h1>
         <p>Check out dates to catch award winning flicks in theatres.</p>
       </div>
-      <div className="flex overflow-x-auto gap-3 w-full no-scrollbar">
+      <div className="flex overflow-x-auto gap-1 w-full no-scrollbar px-8">
         {results.map((movie: Movie) => {
           const { id, poster_path } = movie;
           return (
@@ -30,7 +30,7 @@ const Theatres_Movies: React.FC<TheatresResults> = ({ theatres: { results } }) =
                 <img
                   src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                   alt=""
-                  className="hover:border-2 hover:border-indigo-600 cursor-pointer h-full"
+                  className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer h-full"
                 />
               </NextLink>
             </div>

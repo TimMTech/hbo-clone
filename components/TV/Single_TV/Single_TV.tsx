@@ -90,7 +90,7 @@ const Single_TV: React.FC<SingleTVProps> = ({
 
   return (
     <div className="w-full h-full">
-      <div className=" sm:h-[380px] md:h-[480px] lg:h-[580px] h-[570px] relative filter brightness-50 ">
+      <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
           src={backdrop_path || poster_path}
@@ -156,7 +156,7 @@ const Single_TV: React.FC<SingleTVProps> = ({
           )}
         </div>
 
-        <div className="md:grid-cols-3 lg:grid-cols-4 grid grid-cols-2 py-4 gap-4">
+        <div className="md:grid-cols-3 lg:grid-cols-4 grid grid-cols-2 py-4 gap-4 ">
           {episodes
             ?.filter((item: Episodes) => item.still_path !== null)
             .map((episode: Episodes) => {
