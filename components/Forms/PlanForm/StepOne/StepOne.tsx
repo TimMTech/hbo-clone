@@ -7,7 +7,7 @@ const StepOne: React.FC<StepOneProps> = ({
   handlePlanSelection,
 }) => {
   return (
-    <div className=" text-white flex  flex-col justify-center items-center w-full h-full">
+    <div className=" text-white flex  flex-col justify-center items-center w-full h-full mt-10">
       <h1 className="md:w-full text-3xl py-8 text-center w-[300px]">
         Save Over 40% When You Prepay for a Year
       </h1>
@@ -18,7 +18,7 @@ const StepOne: React.FC<StepOneProps> = ({
         monthly plans.)
       </p>
 
-      <div className="lg:flex lg:flex-row  flex flex-col justify-center items-center gap-6 py-8 ">
+      <div className="lg:flex lg:flex-row flex flex-col  justify-center items-center gap-6 py-8 ">
         <div className="w-[430px] h-[370px]  flex flex-col items-center justify-between bg-gradient-to-r from-purple-900/20 to-purple-900/70">
           <div className="flex flex-col items-center justify-center pt-4 ">
             <h1 className="text-4xl font-bold">With Ads</h1>
