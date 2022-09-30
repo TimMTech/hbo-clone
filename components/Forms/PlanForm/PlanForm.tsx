@@ -157,7 +157,7 @@ const PlanForm: React.FC = () => {
   };
 
   return (
-    <div className="  text-white w-screen h-full mt-24 flex flex-col justify-center items-center">
+    <div className=" text-white w-screen h-full mt-24 flex flex-col justify-center items-center">
       {Object.values(plan).every((value) => value !== "") && (
         <div className="w-full  max-w-[700px] flex flex-col gap-4 py-4 px-8 my-4 bg-gradient-to-r from-black to-purple-900 rounded-md">
           <div className="w-full flex justify-between items-center">

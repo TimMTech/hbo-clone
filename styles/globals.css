@@ -8,14 +8,19 @@
   padding: 0;
 }
 
-html, body {
+html {
   background: linear-gradient(160deg, rgba(0,0,0,1), rgba(0,0,0,1), rgba(30,5,60,1) );
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   min-height: 100%;
+  min-width: 100%;
  
+}
+
+body {
+  overflow-x:hidden;
 }
 
 input:-webkit-autofill,

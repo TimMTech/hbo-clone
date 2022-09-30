@@ -7,7 +7,7 @@ const StepOne: React.FC<StepOneProps> = ({
   handlePlanSelection,
 }) => {
   return (
-    <div className=" text-white flex  flex-col justify-center items-center w-full h-full mt-10">
+    <div className=" text-white flex  flex-col justify-center items-center w-full h-full">
       <h1 className="md:w-full text-3xl py-8 text-center w-[300px]">
         Save Over 40% When You Prepay for a Year
       </h1>
