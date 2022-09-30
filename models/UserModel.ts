@@ -1,12 +1,14 @@
 import mongoose from "mongoose"
 
+
 interface UserSchema {
     firstName: string,
     lastName: string,
     email: string,
     password: string,
     ads: string,
-    billing: string
+    billing: string,
+    movies: []
 }
 
 const UserTemplate = new mongoose.Schema<UserSchema>({
@@ -33,7 +35,14 @@ const UserTemplate = new mongoose.Schema<UserSchema>({
     billing: {
         type: String,
         required: true
-    }
+    },
+    movies: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Movie"
+        }
+    ]
+    
 })
 
 module.exports = mongoose.models.User || mongoose.model("User", UserTemplate)

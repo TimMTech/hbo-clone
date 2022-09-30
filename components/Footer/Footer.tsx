@@ -11,8 +11,8 @@ import test_image from "/public/static/image/test_image.png";
 const Footer: React.FC = () => {
   return (
     <footer className="w-screen flex flex-col relative">
-      <div className="h-[500px] w-full relative  ">
-        <NextImage src={test_image} layout="fill" objectFit="cover" />
+      <div className="h-[500px]  relative  ">
+        <NextImage src={test_image} layout="fill" objectFit="cover"  />
       </div>
       <div className="absolute top-[40%] left-[7%] text-white">
         <h1 className="text-2xl">Already Have an HBO Max Account?</h1>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           <NextLink href="/auth/subscribe">SIGN UP</NextLink>
         </button>
       </div>
-      <div className="p-8">
+      <div className=" md:flex md:flex-row-reverse md:justify-between md:items-center p-8 flex flex-col gap-2">
         <p>&copy; 2022 TimMTech, LLC. All Rights Reserved.</p>
 
         <ul className="flex items-center gap-2">

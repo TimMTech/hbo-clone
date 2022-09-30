@@ -15,6 +15,7 @@ const Movie: NextPage = ({
   similarMovies,
   movieCredits,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  
   return (
     <>
       <Single_Movie

@@ -27,6 +27,7 @@ interface CastAndCrew {
 
 const Single_Movie: React.FC<SingleMovieProps> = ({
   singleMovie: {
+    id,
     backdrop_path,
     original_title,
     runtime,
@@ -34,6 +35,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
     vote_average,
     overview,
   },
+
   similarMovies: { results },
   movieCredits: { cast, crew },
 }) => {
@@ -44,6 +46,37 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   const [producerDropDown, setProducerDropDown] = useState<boolean>(false);
   const [writerDropDown, setWriterDropDown] = useState<boolean>(false);
   const [soundDropDown, setSoundDropDown] = useState<boolean>(false);
+  
+
+  const handleAddMovie = async () => {
+    
+    
+    await fetch(`/api/movie/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: session?.user._id,
+        original_title,
+        overview,
+        release_date,
+        vote_average,
+        runtime,
+        backdrop_path,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) console.log("ERROR");
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="w-full h-full">
@@ -67,7 +100,10 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
             <span>{vote_average.toFixed(1)}</span>
           </div>
           {session ? (
-            <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
+            <button
+              onClick={handleAddMovie}
+              className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md "
+            >
               Add To Favourite
             </button>
           ) : (

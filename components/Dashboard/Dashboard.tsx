@@ -1,8 +1,30 @@
+import { useState, useEffect } from "react";
+
+
 interface SessionProp {
   session: any;
 }
 
 const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
+
+  const [movies, setMovies] = useState<any>()
+  
+  useEffect(() => {
+    fetch(`/api/users/${user._id}`, {
+      method: "GET",
+    })
+      .then((response) => {
+        if (!response.ok) console.log("Error");
+        return response.json();
+      })
+      .then((data) => {
+        setMovies(data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [user._id]);
+
   return (
     <div className="w-full h-full">
       <div className="flex flex-col items-center justify-center mt-20 gap-14">
