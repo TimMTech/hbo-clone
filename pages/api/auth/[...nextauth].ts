@@ -10,6 +10,7 @@ declare module "next-auth" {
     user: {
       _id?: string;
       firstName?: string;
+      movies?: [];
     } & DefaultSession["user"];
   }
 }
@@ -46,13 +47,17 @@ export default NextAuth({
   ],
   callbacks: {
     jwt: async ({ token, user }) => {
+      
       if (user) {
+        
         token._id = user._id;
         token.firstName = user.firstName;
+        
       }
       return token;
     },
     session: async ({ session, token }) => {
+      
       if (token) {
         session.user = token
       }

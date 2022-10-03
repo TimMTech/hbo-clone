@@ -29,7 +29,6 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setMovies(data);
       })
       .catch((error) => {

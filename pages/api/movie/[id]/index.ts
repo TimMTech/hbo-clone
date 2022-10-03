@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../../database/dbConnect";
 import mongoose from "mongoose";
+import { remove } from "nprogress";
 const MovieSchema = require("../../../../models/MovieModel");
 const UserSchema = require("../../../../models/UserModel");
-
 
 interface Data {
   _id: mongoose.Schema.Types.ObjectId;
@@ -38,6 +38,25 @@ const movie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .catch((error: Data) => {
         console.log(error);
       });
+  }
+  if (method === "DELETE") {
+    const removedMovie = await MovieSchema.findOneAndDelete({
+      id: req.body.id,
+      new: true,
+    });
+    if (removedMovie) {
+      const user = await UserSchema.findByIdAndUpdate(
+        { _id: removedMovie.user_id },
+        {
+          $pull: {
+            movies: removedMovie._id,
+          },
+        }
+      );
+      user.save();
+      return res.status(200).json(removedMovie);
+    }
+    return res.status(400);
   }
 };
 

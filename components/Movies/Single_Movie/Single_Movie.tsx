@@ -3,7 +3,7 @@ import NextImage from "next/image";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { convertRuntime } from "../../../utils/conversions/convert";
 import { externalNextImageLoader } from "../../../utils/loaders/externalLoaders";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 interface SingleMovieProps {
@@ -47,11 +47,10 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   const [producerDropDown, setProducerDropDown] = useState<boolean>(false);
   const [writerDropDown, setWriterDropDown] = useState<boolean>(false);
   const [soundDropDown, setSoundDropDown] = useState<boolean>(false);
-  
+
+  const [addedMovie, setAddedMovie] = useState<boolean>(false);
 
   const handleAddMovie = async () => {
-    
-    
     await fetch(`/api/movie/${id}`, {
       method: "POST",
       headers: {
@@ -60,20 +59,63 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
       body: JSON.stringify({
         user_id: session?.user._id,
         id,
-        poster_path
+        poster_path,
       }),
     })
       .then((response) => {
         if (!response.ok) console.log("ERROR");
         return response.json();
       })
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        setAddedMovie(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const handleRemoveMovie = async () => {
+    await fetch(`/api/movie/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) console.log("Error");
+        return response.json();
+      })
+      .then(() => {
+        setAddedMovie(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    if (session) {
+      fetch(`/api/users/${session?.user._id}`, {
+        method: "GET",
+      })
+        .then((response) => {
+          if (!response.ok) console.log("Error");
+          return response.json();
+        })
+        .then((data) => {
+          const alreadyAdded = data
+            .map((movies: any) => parseInt(movies.id))
+            .includes(id);
+          if (alreadyAdded) setAddedMovie(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [id, session]);
 
   return (
     <div className="w-full h-full">
@@ -98,10 +140,10 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
           </div>
           {session ? (
             <button
-              onClick={handleAddMovie}
+              onClick={addedMovie ? handleRemoveMovie : handleAddMovie}
               className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md "
             >
-              Add To Favourite
+              {addedMovie ? "Remove From Favourite" : "Add To Favourite"}
             </button>
           ) : (
             <button className="hover:bg-none  hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
