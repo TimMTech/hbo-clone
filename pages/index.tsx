@@ -4,7 +4,6 @@ import type {
   InferGetServerSidePropsType,
 } from "next";
 import {
-  fetchPopularMovies,
   fetchTopRatedMovies,
   fetchUpcomingMovies,
   fetchTheatresMovies,
@@ -17,10 +16,9 @@ import Upcoming_Movies from "../components/Movies/Upcoming/Upcoming_Movies";
 import Theatres_Movies from "../components/Movies/Theatres/Theatres_Movies";
 import TopRated_TV from "../components/TV/Top_Rated/Top_Rated_TV";
 import Popular_People from "../components/People/Popular/Popular_People";
-import Footer from "../components/Footer/Footer"
+import Footer from "../components/Footer/Footer";
 
 const Home: NextPage = ({
-  popular,
   theatres,
   topRated,
   upcoming,
@@ -43,19 +41,30 @@ const Home: NextPage = ({
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const popular = await fetchPopularMovies();
-  const theatres = await fetchTheatresMovies();
-
-  const topRated = await fetchTopRatedMovies();
-  const upcoming = await fetchUpcomingMovies();
-
-  const topRated_TV = await fetchTopRatedTV();
-
-  const popular_people = await fetchPopularPeople();
+  const [
+    theatresRes,
+    topRatedRes,
+    upcomingRes,
+    topRated_TVRes,
+    popular_peopleRes,
+  ] = await Promise.all([
+    await fetchTheatresMovies(),
+    await fetchTopRatedMovies(),
+    await fetchUpcomingMovies(),
+    await fetchTopRatedTV(),
+    await fetchPopularPeople(),
+  ]);
+  const [theatres, topRated, upcoming, topRated_TV, popular_people] =
+    await Promise.all([
+      theatresRes,
+      topRatedRes,
+      upcomingRes,
+      topRated_TVRes,
+      popular_peopleRes,
+    ]);
 
   return {
     props: {
-      popular,
       theatres,
       topRated,
       upcoming,

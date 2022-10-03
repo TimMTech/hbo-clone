@@ -1,19 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { userAgent } from "next/server";
 import dbConnect from "../../../../database/dbConnect";
+import mongoose from "mongoose";
 const MovieSchema = require("../../../../models/MovieModel");
 const UserSchema = require("../../../../models/UserModel");
-import mongoose from "mongoose";
+
 
 interface Data {
   _id: mongoose.Schema.Types.ObjectId;
   user_id: mongoose.Schema.Types.ObjectId;
   backdrop_path: string;
-  original_title: string;
-  runtime: number;
-  release_date: string;
-  vote_average: number;
-  overview: string;
 }
 
 const movie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -22,12 +17,8 @@ const movie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   if (method === "POST") {
     const movie = await new MovieSchema({
       user_id: req.body.user_id,
-      original_title: req.body.original_title,
-      overview: req.body.overview,
-      backdrop_path: req.body.backdrop_path,
-      release_date: req.body.release_date,
-      runtime: req.body.runtime,
-      vote_average: req.body.vote_average,
+      id: req.body.id,
+      poster_path: req.body.poster_path,
     });
     movie
       .save()
@@ -41,6 +32,8 @@ const movie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           }
         );
         user.save();
+
+        return res.status(200).json(data);
       })
       .catch((error: Data) => {
         console.log(error);

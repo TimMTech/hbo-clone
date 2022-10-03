@@ -29,6 +29,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   singleMovie: {
     id,
     backdrop_path,
+    poster_path,
     original_title,
     runtime,
     release_date,
@@ -58,12 +59,8 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
       },
       body: JSON.stringify({
         user_id: session?.user._id,
-        original_title,
-        overview,
-        release_date,
-        vote_average,
-        runtime,
-        backdrop_path,
+        id,
+        poster_path
       }),
     })
       .then((response) => {

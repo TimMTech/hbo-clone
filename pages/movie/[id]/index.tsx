@@ -15,7 +15,6 @@ const Movie: NextPage = ({
   similarMovies,
   movieCredits,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  
   return (
     <>
       <Single_Movie
@@ -31,9 +30,19 @@ export default Movie;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
-  const singleMovie = await fetchSingleMovie(id);
-  const similarMovies = await fetchSingleMovieSimilar(id);
-  const movieCredits = await fetchSingleMovieCredits(id);
+  const [singleMovieRes, similarMoviesRes, movieCreditsRes] = await Promise.all(
+    [
+      await fetchSingleMovie(id),
+      await fetchSingleMovieSimilar(id),
+      await fetchSingleMovieCredits(id),
+    ]
+  );
+
+  const [singleMovie, similarMovies, movieCredits] = await Promise.all([
+    singleMovieRes,
+    similarMoviesRes,
+    movieCreditsRes,
+  ]);
 
   return {
     props: {

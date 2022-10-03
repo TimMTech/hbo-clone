@@ -10,7 +10,7 @@ import {
 import Single_Person from "../../../components/People/Single_Person/Single_Person";
 
 const People: NextPage = ({singlePerson} : InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(singlePerson)
+  
     return (
         <>
         <Single_Person singlePerson={singlePerson} />

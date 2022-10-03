@@ -2,33 +2,23 @@ import mongoose from "mongoose";
 
 interface MovieSchema {
   user_id: mongoose.Schema.Types.ObjectId;
-  original_title: string;
-  overview: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-  backdrop_path: string;
+  id: string;
+  poster_path: string;
 }
 
 const MovieModel = new mongoose.Schema<MovieSchema>({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: "User",
   },
-  original_title: {
+  id: {
     type: String,
     required: true,
   },
-  overview: {
+
+  poster_path: {
     type: String,
-    required: true,
-  },
-  release_date: {
-    type: String,
-    required: true,
-  },
-  vote_average: {
-    type: Number,
     required: true,
   },
 });

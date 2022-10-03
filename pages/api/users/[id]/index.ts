@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import dbConnect from "../../../../database/dbConnect";
-const UserSchema = require("../../../../models/UserModel")
+const UserSchema = require("../../../../models/UserModel");
+const MovieSchema = require("../../../../models/MovieModel");
 
 const favourites = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
@@ -10,11 +11,15 @@ const favourites = async (req: NextApiRequest, res: NextApiResponse) => {
     query: { id },
   } = req;
   if (method === "GET") {
-    const user = await UserSchema.findById(id).populate("movies")
+    const user = await UserSchema.findById(id).populate({
+      path: "movies",
+      model: MovieSchema,
+    });
+
     if (user) {
-        return res.status(200).json(user.movies)
+      return res.status(200).json(user.movies);
     }
-    return res.status(400)
+    return res.status(400);
   }
 };
 
