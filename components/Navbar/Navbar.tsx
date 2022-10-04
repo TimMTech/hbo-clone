@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
               <AiOutlineMenu size={25} onClick={handleOpenMenu} />
             </li>
             <li className="hover:text-white  md:flex hidden">
-              <NextLink href={"/movie"}>Movies</NextLink>
+              <NextLink href={"/movies"}>Movies</NextLink>
             </li>
             <li className="hover:text-white  md:flex hidden">
               <NextLink href={"/tv"}>Series</NextLink>
@@ -170,7 +170,7 @@ const Navbar: React.FC = () => {
                     </li>
 
                     <li className="hover:text-white">
-                      <NextLink href={"/movie"}>Movies</NextLink>
+                      <NextLink href={"/movies"}>Movies</NextLink>
                     </li>
                     <li className="hover:text-white">
                       <NextLink href={"/tv"}>Series</NextLink>

@@ -51,7 +51,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   const [addedMovie, setAddedMovie] = useState<boolean>(false);
 
   const handleAddMovie = async () => {
-    await fetch(`/api/movie/${id}`, {
+    await fetch(`/api/movies/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
   };
 
   const handleRemoveMovie = async () => {
-    await fetch(`/api/movie/${id}`, {
+    await fetch(`/api/movies/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -165,7 +165,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
                 key={id}
                 className=" sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0"
               >
-                <NextLink href={`/movie/${id}`}>
+                <NextLink href={`/movies/${id}`}>
                   <img
                     src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                     alt=""

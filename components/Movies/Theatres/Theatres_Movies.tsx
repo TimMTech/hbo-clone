@@ -27,7 +27,7 @@ const Theatres_Movies: React.FC<TheatresResults> = ({ theatres: { results } }) =
               key={id}
               className="sm:w-[25%] md:w-[40%] lg:w-[22%] w-[25%] flex-shrink-0 "
             >
-              <NextLink href={`/movie/${id}`}>
+              <NextLink href={`/movies/${id}`}>
                 <img
                   src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                   alt=""

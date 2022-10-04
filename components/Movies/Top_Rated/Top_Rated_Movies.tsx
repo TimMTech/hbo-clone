@@ -21,7 +21,7 @@ const TopRated_Movies: React.FC<TopRatedResults> = ({ topRated: { results } }) =
               key={id}
               className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0 "
             >
-              <NextLink href={`/movie/${id}`}>
+              <NextLink href={`/movies/${id}`}>
                 <img
                   src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                   alt=""

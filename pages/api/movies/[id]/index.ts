@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../../database/dbConnect";
 import mongoose from "mongoose";
-import { remove } from "nprogress";
+
 const MovieSchema = require("../../../../models/MovieModel");
 const UserSchema = require("../../../../models/UserModel");
 
@@ -42,7 +42,7 @@ const movie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   if (method === "DELETE") {
     const removedMovie = await MovieSchema.findOneAndDelete({
       id: req.body.id,
-      new: true,
+      
     });
     if (removedMovie) {
       const user = await UserSchema.findByIdAndUpdate(
