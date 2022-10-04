@@ -11,6 +11,8 @@ const SigninForm: React.FC = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  const [error, setError] = useState<boolean>(false);
+
   const [signinValues, setSigninValues] = useState<SigninValues>({
     email: "",
     password: "",
@@ -29,20 +31,19 @@ const SigninForm: React.FC = () => {
     let options = { redirect: false, ...signinValues };
     const res = await signIn("credentials", options);
     if (res?.error) {
-      console.log("Error");
+      setError(true);
     } else {
-      console.log("logged in")
+      console.log("logged in");
     }
-    
   };
 
   useEffect(() => {
     if (status === "authenticated") {
       router.push({
-        pathname: `/user/${session?.user._id}`
-      })
+        pathname: `/user/${session?.user._id}`,
+      });
     }
-  }, [router, session?.user._id, status])
+  }, [router, session?.user._id, status]);
 
   return (
     <div className="text-white flex flex-col justify-center items-center w-screen h-screen">
@@ -50,7 +51,7 @@ const SigninForm: React.FC = () => {
       <form
         onSubmit={handleSigninSubmit}
         action="POST"
-        className="md:w-[75%]  flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20 h-[70%] w-full max-w-[900px] px-20 rounded-md"
+        className="md:w-[75%]  flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20 h-[75%] w-full max-w-[900px] px-20 rounded-md"
       >
         <div className="flex flex-col gap-4 ">
           <p>Do you have an HBO Max Account?</p>
@@ -70,11 +71,16 @@ const SigninForm: React.FC = () => {
           />
         </div>
         <div className="flex gap-6 py-10">
-          <button className="px-10 py-3 bg-white/5 rounded-md">SIGN IN</button>
+          <button className="hover:bg-black hover:border-2 hover:border-purple-600 border-2 border-transparent px-10 py-3 bg-button-gray rounded-md">
+            SIGN IN
+          </button>
           <button className="text-sm text-violet-400/80">
             Forgot Password?
           </button>
         </div>
+        <p className={`${error ? "opacity-100  text-red-500" : "opacity-0"}`}>
+          Incorrect Email or Password
+        </p>
         <div className="flex items-center gap-5 pb-10">
           <div className="w-full border-b-[1px] border-white/20"></div>
           OR
@@ -84,7 +90,7 @@ const SigninForm: React.FC = () => {
           <p>Do you have a Google account?</p>
           <button
             type="button"
-            className="px-6 py-3 my-3 bg-gray-600/40 rounded-md"
+            className="hover:bg-black hover:border-2 hover:border-purple-600 border-2 border-transparent px-6 py-3 my-3 bg-button-gray rounded-md"
           >
             SIGN IN WITH GOOGLE
           </button>

@@ -46,7 +46,7 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
           <h2 className="text-white py-2">{user.firstName}</h2>
         </div>
 
-        <button className="hover:border-2 hover:border-purple-600 border-2 border-transparent hover:bg-black text-white text-lg font-bold px-6 py-2 bg-gray-400/25 rounded-md my-6">
+        <button className="hover:border-2 hover:border-purple-600 border-2 border-transparent hover:bg-black text-white text-lg font-bold px-6 py-2 bg-button-gray rounded-md my-6">
           SETTINGS
         </button>
         <div className="md:px-12 lg:px-16 w-full px-8">

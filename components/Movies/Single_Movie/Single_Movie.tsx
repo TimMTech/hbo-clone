@@ -5,9 +5,11 @@ import { convertRuntime } from "../../../utils/conversions/convert";
 import { externalNextImageLoader } from "../../../utils/loaders/externalLoaders";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { BiMoviePlay } from "react-icons/bi";
 
 interface SingleMovieProps {
   singleMovie: any;
+  singleMovieTrailer: any;
   similarMovies: any;
   movieCredits: any;
 }
@@ -37,9 +39,14 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
     overview,
   },
 
+  singleMovieTrailer,
   similarMovies: { results },
   movieCredits: { cast, crew },
 }) => {
+  const trailer = singleMovieTrailer.results
+    .filter((item: any) => item.type === "Trailer")
+    .map((trailer: any) => trailer.key);
+
   const { data: session } = useSession();
 
   const [castDropDown, setCastDropDown] = useState<boolean>(false);
@@ -98,6 +105,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
 
   useEffect(() => {
     if (session) {
+      setAddedMovie(false)
       fetch(`/api/users/${session?.user._id}`, {
         method: "GET",
       })
@@ -138,10 +146,21 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
             <span>{release_date.slice(0, 4)}</span>
             <span>{vote_average.toFixed(1)}</span>
           </div>
+
+          <a
+            className="text-white/70 text-sm flex items-center gap-2"
+            target="_blank"
+            rel="noreferrer"
+            href={`https://www.youtube.com/watch?v=${trailer.slice(0, 1)}`}
+          >
+            <BiMoviePlay />
+            TRAILER
+          </a>
+
           {session ? (
             <button
               onClick={addedMovie ? handleRemoveMovie : handleAddMovie}
-              className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md "
+              className="hover:bg-black hover:border hover:border-white border border-transparent  bg-button-gray px-6 py-2 rounded-md "
             >
               {addedMovie ? "Remove From Favourite" : "Add To Favourite"}
             </button>

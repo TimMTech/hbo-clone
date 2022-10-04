@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
       <div className="absolute flex flex-col gap-2 items-start top-[40%] left-[7%] text-white">
         <h1 className="text-2xl">Already Have an HBO Max Account?</h1>
         <button className="hover:bg-none hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
-          <NextLink href="/auth/subscribe">SIGN UP</NextLink>
+          <NextLink href="/auth/subscribe">SIGN IN</NextLink>
         </button>
       </div>
       <div className=" md:flex md:flex-row-reverse md:justify-between md:items-center p-8 flex flex-col gap-2">

@@ -68,3 +68,11 @@ export const fetchPopularPagination: Function = async(page: Movie) => {
   return popularPaginated
 }
 
+export const fetchSingleMovieTrailer: Function = async (id:Movie) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b802b4a83ff17e57417a263b981797fb`
+  );
+  const singleMovieTrailer = await res.json()
+  return singleMovieTrailer
+}
+

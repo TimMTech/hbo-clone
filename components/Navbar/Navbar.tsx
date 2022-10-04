@@ -88,7 +88,11 @@ const Navbar: React.FC = () => {
           </NextLink>
           <ul className=" flex items-center justify-end gap-4 flex-1 ">
             <li className="hover:text-white ">
-              <AiOutlineSearch size={30} />
+              <NextLink href="/search">
+                <a>
+                  <AiOutlineSearch size={30} />
+                </a>
+              </NextLink>
             </li>
 
             {session ? (
@@ -98,11 +102,11 @@ const Navbar: React.FC = () => {
                 </li>
                 {openProfileMenu && (
                   <ul className="absolute flex flex-col justify-evenly items-start bg-matte-black right-[3%] mt-2 rounded-md p-1 w-[150px]">
-                    <li className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5">
-                      <NextLink href={`/user/${session?.user._id}`}>
+                    <NextLink href={`/user/${session?.user._id}`}>
+                      <li className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5">
                         My Stuff
-                      </NextLink>
-                    </li>
+                      </li>
+                    </NextLink>
                     <li className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5">
                       Settings
                     </li>

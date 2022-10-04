@@ -34,7 +34,7 @@ const All_Movies: React.FC<AllMoviesProps> = ({
     <div className="w-full h-full">
       <div className="mt-20 ">
         <h1 className="text-white pl-6 font-bold text-2xl">All Movies</h1>
-        <div className="md:grid-cols-4 grid grid-cols-3 p-6 gap-3 min-h-screen">
+        <div className="md:grid-cols-4 grid grid-cols-3 p-6 gap-1 min-h-screen">
           {results.map((movie: Movie) => {
             const { id, poster_path } = movie;
             return (
@@ -43,7 +43,7 @@ const All_Movies: React.FC<AllMoviesProps> = ({
                   <img
                     src={`https://image.tmdb.org/t/p/original${poster_path}`}
                     alt=""
-                    className="hover:border-2 hover:border-indigo-600 cursor-pointer h-full"
+                    className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer h-full"
                   />
                 </NextLink>
               </div>

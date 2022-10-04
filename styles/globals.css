@@ -45,6 +45,10 @@ input:-webkit-autofill:active {
     background-color: rgba(15, 15, 15, 0.97);
   }
 
+  .bg-button-gray {
+    background-color: rgba(62, 59, 68, 0.7);
+  }
+
   .image-inset {
     position: absolute;
     width: 100%;
