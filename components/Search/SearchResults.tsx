@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import {useRouter} from "next/router"
+import { useRouter } from "next/router";
 
 interface SearchResultsProps {
   searchResults: any;
@@ -18,17 +18,18 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   searchResults: { results, errors },
   popularResults,
 }) => {
-  const router = useRouter()
-  
-  const popular = popularResults.results.map((movies: Movie) => movies);
+  const router = useRouter();
+
   return (
     <div className="w-full h-full min-h-screen p-8 ">
       <h1 className="text-white text-2xl font-semibold mb-2">
-        {router.query.value === undefined || errors ? "Our Popular Collection" : "Search Results"}
+        {router.query.value === undefined || errors
+          ? "Our Popular Collection"
+          : "Search Results"}
       </h1>
-      {router.query.value === undefined || errors  ? (
+      {router.query.value === undefined || errors ? (
         <div className="sm:grid-cols-3 md:grid-cols-4 grid grid-cols-2 gap-1 ">
-          {popular
+          {popularResults.results
             ?.filter((item: Movie) => item.poster_path !== null)
             .map((movie: Movie) => {
               const { id, poster_path } = movie;

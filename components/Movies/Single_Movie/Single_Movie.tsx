@@ -130,7 +130,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
       <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative  filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
-          src={backdrop_path}
+          src={backdrop_path || poster_path}
           alt=""
           layout="fill"
           objectFit="cover"
