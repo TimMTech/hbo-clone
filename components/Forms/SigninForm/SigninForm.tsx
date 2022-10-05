@@ -11,12 +11,12 @@ const SigninForm: React.FC = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  const [error, setError] = useState<boolean>(false);
-
   const [signinValues, setSigninValues] = useState<SigninValues>({
     email: "",
     password: "",
   });
+
+  const [invalidCredentials, setInvalidCredentials] = useState<string>("");
 
   const handleSigninChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,10 +28,11 @@ const SigninForm: React.FC = () => {
 
   const handleSigninSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     let options = { redirect: false, ...signinValues };
     const res = await signIn("credentials", options);
     if (res?.error) {
-      setError(true);
+      setInvalidCredentials("Invalid email or password");
     } else {
       console.log("logged in");
     }
@@ -51,17 +52,18 @@ const SigninForm: React.FC = () => {
       <form
         onSubmit={handleSigninSubmit}
         action="POST"
-        className="md:w-[75%]  flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20  w-full max-w-[900px] py-10 px-20 rounded-md"
+        className="md:w-[75%] flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20  w-full max-w-[900px] py-10 px-20 rounded-md"
       >
         <div className="flex flex-col gap-4 ">
           <p>Do you have an HBO Max Account?</p>
           <input
             name="email"
-            type="text"
+            type="email"
             placeholder="Email Address"
             value={signinValues.email}
             onChange={(e) => handleSigninChange(e)}
           />
+
           <input
             name="password"
             type="password"
@@ -70,17 +72,21 @@ const SigninForm: React.FC = () => {
             onChange={(e) => handleSigninChange(e)}
           />
         </div>
+
         <div className="flex gap-6 py-10">
-          <button className="hover:bg-black hover:border-2 hover:border-purple-600 border-2 border-transparent px-10 py-3 bg-button-gray rounded-md">
+          <button
+            className={`${
+              (!signinValues.email || !signinValues.password) &&
+              "pointer-events-none filter brightness-50"
+            } hover:bg-black hover:border-2 hover:border-purple-600 border-2 border-transparent px-10 py-3 bg-button-gray rounded-md`}
+          >
             SIGN IN
           </button>
-          <button className="text-sm text-violet-400/80">
+          <button type="button" className="text-sm text-violet-400/80">
             Forgot Password?
           </button>
         </div>
-        <p className={`${error ? "opacity-100  text-red-500" : "opacity-0"}`}>
-          Incorrect Email or Password
-        </p>
+        <p className="text-xs  text-red-800">{invalidCredentials}</p>
         <div className="flex items-center gap-5 pb-10">
           <div className="w-full border-b-[1px] border-white/20"></div>
           OR

@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import StepOne from "./StepOne/StepOne";
 import StepThree from "./StepThree/StepThree";
 import StepTwo from "./StepTwo/StepTwo";
-import { join } from "path";
+
 
 interface Plan {
   ads: string;
