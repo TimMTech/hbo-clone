@@ -43,8 +43,56 @@ const Single_TV: React.FC<SingleTVProps> = ({
 
   const [season, setSeason] = useState<any>();
 
+  const [addedTV, setAddedTV] = useState<boolean>(false);
+
   const handleSeasonToggle = () => {
     setSelectSeason(!selectSeason);
+  };
+
+  const handleAddTV = async () => {
+    await fetch(`/api/tv/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: session?.user._id,
+        id,
+        poster_path,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) console.log("Error");
+        return response.json();
+      })
+      .then(() => {
+        setAddedTV(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleRemoveTV = async () => {
+    await fetch(`/api/tv/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) console.log("Error");
+        return response.json();
+      })
+      .then(() => {
+        setAddedTV(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleSeasonChange = async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -58,7 +106,6 @@ const Single_TV: React.FC<SingleTVProps> = ({
       .then((data) => {
         setEpisodes(data.episodes);
         setSeason(data.season_number);
-       
       })
       .catch((error) => {
         console.log(error);
@@ -88,6 +135,28 @@ const Single_TV: React.FC<SingleTVProps> = ({
     getFirstSeason();
   }, [id, seasons]);
 
+  useEffect(() => {
+    if (session) {
+      setAddedTV(false);
+      fetch(`/api/users/${session?.user._id}`, {
+        method: "GET",
+      })
+        .then((response) => {
+          if (!response.ok) console.log("Error");
+          return response.json();
+        })
+        .then((data) => {
+          const alreadyAdded = data.tv
+            .map((tv: any) => parseInt(tv.id))
+            .includes(id);
+
+          if (alreadyAdded) setAddedTV(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [id, session]);
   return (
     <div className="w-full h-full">
       <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative filter brightness-50 ">
@@ -104,8 +173,11 @@ const Single_TV: React.FC<SingleTVProps> = ({
         <div className=" text-white flex flex-col items-start gap-3 ">
           <h1 className="lg:text-4xl text-3xl font-bold">{name}</h1>
           {session ? (
-            <button className="hover:bg-none hover:bg-white hover:text-black hover:shadow-[inset_0_0_0_2px] hover:shadow-black bg-matte-black px-6 py-2 rounded-md ">
-              Add To Favourite
+            <button
+              onClick={addedTV ? handleRemoveTV : handleAddTV}
+              className="hover:bg-black hover:border hover:border-white border border-transparent  bg-button-gray px-6 py-2 rounded-md "
+            >
+              {addedTV ? "Remove From Favourite" : "Add To Favourite"}
             </button>
           ) : (
             <button className="hover:bg-none  hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">

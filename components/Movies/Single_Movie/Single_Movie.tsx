@@ -114,7 +114,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
           return response.json();
         })
         .then((data) => {
-          const alreadyAdded = data
+          const alreadyAdded = data.movies
             .map((movies: any) => parseInt(movies.id))
             .includes(id);
           if (alreadyAdded) setAddedMovie(true);

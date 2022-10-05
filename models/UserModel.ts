@@ -9,6 +9,7 @@ interface UserSchema {
     ads: string,
     billing: string,
     movies: []
+    tv: []
 }
 
 const UserTemplate = new mongoose.Schema<UserSchema>({
@@ -40,6 +41,12 @@ const UserTemplate = new mongoose.Schema<UserSchema>({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Movie"
+        }
+    ],
+    tv: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "TV"
         }
     ]
     

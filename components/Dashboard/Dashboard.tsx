@@ -5,7 +5,7 @@ interface SessionProp {
   session: any;
 }
 
-interface Movie {
+interface Favourites {
   user_id: string;
   id: string;
   _id: string;
@@ -14,6 +14,7 @@ interface Movie {
 
 const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
   const [movies, setMovies] = useState<any>();
+  const [tv, setTV] = useState<any>();
   const [option, setOption] = useState<boolean>(false);
 
   const handleOption = () => {
@@ -29,7 +30,8 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
         return response.json();
       })
       .then((data) => {
-        setMovies(data);
+        setMovies(data.movies);
+        setTV(data.tv);
       })
       .catch((error) => {
         console.log(error);
@@ -57,7 +59,7 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
                 !option ? "border-b-white" : "border-b-transparent"
               } leading-8 text-white text-lg font-semibold py-2 cursor-pointer`}
             >
-              My List
+              My Movies
             </h2>
             <h2
               onClick={handleOption}
@@ -65,14 +67,14 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
                 option ? "border-b-white" : "border-b-transparent"
               } leading-8 text-white text-lg font-semibold py-2 cursor-pointer`}
             >
-              Continue Watching
+              My Shows
             </h2>
           </div>
           <div className="w-full border border-white/30 " />
         </div>
         <div className="md:px-12 lg:px-16 flex overflow-x-auto gap-1 no-scrollbar px-8 my-4">
           {!option &&
-            movies?.map((movie: Movie) => {
+            movies?.map((movie: Favourites) => {
               const { _id, id, poster_path } = movie;
               return (
                 <div
@@ -80,6 +82,24 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
                   className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0"
                 >
                   <NextLink href={`/movies/${id}`}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                      alt=""
+                      className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer h-full"
+                    />
+                  </NextLink>
+                </div>
+              );
+            })}
+          {option &&
+            tv.map((tv: Favourites) => {
+              const { _id, id, poster_path } = tv;
+              return (
+                <div
+                  key={_id}
+                  className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0"
+                >
+                  <NextLink href={`/tv/${id}`}>
                     <img
                       src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                       alt=""
