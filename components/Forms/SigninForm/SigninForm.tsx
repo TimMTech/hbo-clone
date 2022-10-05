@@ -46,12 +46,12 @@ const SigninForm: React.FC = () => {
   }, [router, session?.user._id, status]);
 
   return (
-    <div className="text-white flex flex-col justify-center items-center w-screen h-screen">
+    <div className="text-white flex flex-col justify-center items-center w-screen h-full mt-16 mb-4">
       <h1 className="text-3xl pt-10 pb-6">Sign In</h1>
       <form
         onSubmit={handleSigninSubmit}
         action="POST"
-        className="md:w-[75%]  flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20 h-[75%] w-full max-w-[900px] px-20 rounded-md"
+        className="md:w-[75%]  flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20  w-full max-w-[900px] py-10 px-20 rounded-md"
       >
         <div className="flex flex-col gap-4 ">
           <p>Do you have an HBO Max Account?</p>
