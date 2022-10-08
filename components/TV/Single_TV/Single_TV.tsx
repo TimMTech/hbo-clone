@@ -159,7 +159,7 @@ const Single_TV: React.FC<SingleTVProps> = ({
   }, [id, session]);
   return (
     <div className="w-full h-full">
-      <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative filter brightness-50 ">
+      <div className=" sm:h-[380px] md:h-[480px] lg:h-[590px] h-[350px] relative filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
           src={backdrop_path || poster_path}

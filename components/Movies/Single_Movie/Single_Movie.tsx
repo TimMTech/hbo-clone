@@ -127,7 +127,8 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
 
   return (
     <div className="w-full h-full">
-      <div className=" sm:h-[380px] md:h-[480px] lg:h-[600px] h-[350px] relative  filter brightness-50 ">
+      <div></div>
+      <div className=" sm:h-[380px] md:h-[480px] lg:h-[580px] h-[350px] relative  filter brightness-50 ">
         <NextImage
           loader={externalNextImageLoader}
           src={backdrop_path || poster_path}
@@ -139,7 +140,7 @@ const Single_Movie: React.FC<SingleMovieProps> = ({
         <div className="image-inset"></div>
       </div>
       <div className="px-8">
-        <div className=" text-white  flex flex-col items-start gap-3">
+        <div className=" text-white  flex flex-col items-start gap-2">
           <h1 className="lg:text-4xl text-3xl font-bold">{original_title}</h1>
           <div className="text-white/60 w-full flex gap-5">
             <span>{convertRuntime(runtime)}</span>

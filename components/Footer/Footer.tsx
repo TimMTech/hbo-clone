@@ -6,13 +6,13 @@ import {
 } from "react-icons/ai";
 import NextImage from "next/image";
 import NextLink from "next/link";
-import test_image from "/public/static/image/test_image.png";
+import HBO_MAX_FOOTER from "/public/static/image/HBO_MAX_FOOTER.png";
 
 const Footer: React.FC = () => {
   return (
     <footer className="w-screen flex flex-col relative">
       <div className="h-[500px]  relative  ">
-        <NextImage src={test_image} layout="fill" objectFit="cover"  />
+        <NextImage src={HBO_MAX_FOOTER} layout="fill" objectFit="cover" />
       </div>
       <div className="absolute flex flex-col gap-2 items-start top-[40%] left-[7%] text-white">
         <h1 className="text-2xl">Already Have an HBO Max Account?</h1>

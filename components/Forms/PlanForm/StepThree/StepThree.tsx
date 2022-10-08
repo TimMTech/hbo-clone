@@ -1,31 +1,37 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { billingValidation } from "../../../../utils/yupConfig/yupConfig";
+import { creditCardInput } from "../../../../utils/conversions/convert";
 
-interface StepThreeProps {
-  paymentValues: {
-    user_id: string | undefined;
-    cardName: string;
-    cardNumber: string;
-    exp: string;
-    securityCode: string;
-    zipCode: string;
-    stateOrTerritory: string;
-  };
-  handlePaymentChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePaymentSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+interface PaymentInput {
+  cardName: string;
+  cardNumber: string;
+  exp: string;
+  securityCode: string;
+  zipCode: string;
+  stateOrTerritory: string;
 }
 
-const StepThree: React.FC<StepThreeProps> = ({
-  paymentValues,
-  handlePaymentChange,
-  handlePaymentSubmit,
-}) => {
+interface StepThreeProps {
+  handlePaymentSubmit: (data: PaymentInput) => Promise<void>;
+}
 
- 
+const StepThree: React.FC<StepThreeProps> = ({ handlePaymentSubmit }) => {
+  const {
+    register,
+
+    handleSubmit,
+    formState: { errors, touchedFields },
+  } = useForm<PaymentInput>({
+    mode: "onChange",
+    resolver: yupResolver(billingValidation),
+  });
 
   return (
     <form
-      onSubmit={handlePaymentSubmit}
-      method="POST"
+      onSubmit={handleSubmit(handlePaymentSubmit)}
+      action="POST"
       className="md:p-0 text-white flex flex-col justify-center items-center h-full w-full max-w-[700px] p-4 gap-5"
     >
       <h1 className="text-3xl font-medium">Add a Payment Method</h1>
@@ -34,69 +40,91 @@ const StepThree: React.FC<StepThreeProps> = ({
       </p>
       <div className="flex flex-col w-full gap-5">
         <input
+          {...register("cardName", {
+            required: true,
+          })}
           name="cardName"
           className="outline-none border-b-white/30 border-b-2 rounded-none"
           type="text"
           placeholder="Name on Card"
-          onChange={(e) => handlePaymentChange(e)}
-          value={paymentValues.cardName}
-          required
         />
+        {errors?.cardName && touchedFields?.cardName && (
+          <p className="text-sm text-red-800">{errors?.cardName.message}</p>
+        )}
         <input
+          {...register("cardNumber", {
+            required: true,
+            onChange: (e) => {
+              creditCardInput(e)
+            },
+          })}
           name="cardNumber"
           className="outline-none border-b-white/30 border-b-2 rounded-none"
           type="text"
           placeholder="Card Number"
-          onChange={(e) => handlePaymentChange(e)}
-          value={paymentValues.cardNumber}
           maxLength={19}
-          required
-         
         />
+        {errors?.cardNumber && touchedFields?.cardNumber && (
+          <p className="text-sm text-red-800">{errors?.cardNumber.message}</p>
+        )}
       </div>
       <div className="flex w-full gap-5">
         <input
+          {...register("exp", {
+            required: true,
+          })}
           name="exp"
           className="w-full outline-none border-b-white/30 border-b-2 rounded-none"
           type="text"
           placeholder="Expiration Date"
-          onChange={(e) => handlePaymentChange(e)}
-          value={paymentValues.exp}
           maxLength={5}
-          required
         />
+        {errors?.exp && touchedFields?.exp && (
+          <p className="text-sm text-red-800">{errors?.exp.message}</p>
+        )}
         <input
+          {...register("securityCode", {
+            required: true,
+          })}
           name="securityCode"
           className="w-full outline-none border-b-white/30 border-b-2 rounded-none"
           type="text"
           placeholder="Security Code"
-          onChange={(e) => handlePaymentChange(e)}
-          value={paymentValues.securityCode}
           maxLength={3}
-          required
         />
+        {errors?.securityCode && touchedFields?.securityCode && (
+          <p className="text-sm text-red-800">{errors?.securityCode.message}</p>
+        )}
       </div>
       <div className="flex w-full gap-5">
         <input
+          {...register("zipCode", {
+            required: true,
+          })}
           name="zipCode"
           className="w-full outline-none border-b-white/30 border-b-2 rounded-none"
           type="text"
           placeholder="ZIP Code"
-          onChange={(e) => handlePaymentChange(e)}
-          value={paymentValues.zipCode}
           maxLength={5}
-          required
         />
+        {errors?.zipCode && touchedFields?.zipCode && (
+          <p className="text-sm text-red-800">{errors?.zipCode.message}</p>
+        )}
         <input
+          {...register("stateOrTerritory", {
+            required: true,
+          })}
           name="stateOrTerritory"
           className="w-full outline-none border-b-white/30 border-b-2 rounded-none"
           type="text"
           placeholder="State or Territory"
-          onChange={(e) => handlePaymentChange(e)}
-          value={paymentValues.stateOrTerritory}
           maxLength={2}
-          required
         />
+        {errors?.stateOrTerritory && touchedFields?.stateOrTerritory && (
+          <p className="text-sm text-red-800">
+            {errors?.stateOrTerritory.message}
+          </p>
+        )}
       </div>
       <div className="flex flex-col items-center justify-center p-6  ">
         <h2 className="text-2xl font-semibold py-2 text-center">

@@ -7,13 +7,19 @@ const Banner: React.FC = () => {
     <div className="overflow-hidden">
       <div className="sm:mt-[-2.7rem] sm:h-[320px]  md:h-[390px] lg:h-[530px] relative ">
         <video autoPlay loop muted className="sm:flex hidden">
-          <source src="static/video/BANNER_VIDEO.mp4" type="video/mp4" />
+          <source
+            src="static/video/BANNER_VIDEO.mp4"
+            type="video/mp4"
+          />
         </video>
         <div className="sm:absolute sm:image-inset" />
-        
 
         <div className="sm:hidden relative mt-[-3rem]">
-          <NextImage src={HBO_MAX_BANNER_SMALL_DEVICE} layout="responsive" priority />
+          <NextImage
+            src={HBO_MAX_BANNER_SMALL_DEVICE}
+            layout="responsive"
+            priority
+          />
 
           <div className="image-inset"></div>
         </div>

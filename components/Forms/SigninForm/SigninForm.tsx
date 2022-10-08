@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { signinValidation } from "../../../utils/yupConfig/yupConfig";
 
 interface SigninValues {
   email: string;
@@ -9,30 +12,23 @@ interface SigninValues {
 
 const SigninForm: React.FC = () => {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
-  const [signinValues, setSigninValues] = useState<SigninValues>({
-    email: "",
-    password: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields, isValid },
+  } = useForm<SigninValues>({
+    mode: "onChange",
+    resolver: yupResolver(signinValidation),
   });
 
-  const [invalidCredentials, setInvalidCredentials] = useState<string>("");
+  const router = useRouter();
 
-  const handleSigninChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSigninValues((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSigninSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSigninSubmit = async (signinValues: SigninValues) => {
     let options = { redirect: false, ...signinValues };
     const res = await signIn("credentials", options);
     if (res?.error) {
-      setInvalidCredentials("Invalid email or password");
+      console.log("wrong credentials");
     } else {
       console.log("logged in");
     }
@@ -49,36 +45,43 @@ const SigninForm: React.FC = () => {
   return (
     <div className="text-white flex flex-col justify-center items-center w-screen h-full mt-16 mb-4">
       <h1 className="text-3xl pt-10 pb-6">Sign In</h1>
+
       <form
-        onSubmit={handleSigninSubmit}
+        onSubmit={handleSubmit(handleSigninSubmit)}
         action="POST"
         className="md:w-[75%] flex flex-col justify-center md:bg-gradient-to-b from-gray-900 via-purple-900/30  to-indigo-900/20  w-full max-w-[900px] py-10 px-20 rounded-md"
       >
         <div className="flex flex-col gap-4 ">
           <p>Do you have an HBO Max Account?</p>
           <input
+            {...register("email", {
+              required: true,
+            })}
             name="email"
-            type="email"
+            type="text"
             placeholder="Email Address"
-            value={signinValues.email}
-            onChange={(e) => handleSigninChange(e)}
           />
+          {errors?.email && touchedFields?.email && (
+            <p className="text-sm text-red-800">{errors?.email.message}</p>
+          )}
 
           <input
+            {...register("password", { required: true, minLength: 6 })}
             name="password"
             type="password"
             placeholder="Password"
-            value={signinValues.password}
-            onChange={(e) => handleSigninChange(e)}
           />
+          {errors?.password && touchedFields?.password && (
+            <p className="text-sm text-red-800">{errors?.password.message}</p>
+          )}
         </div>
 
         <div className="flex gap-6 py-10">
           <button
-            className={`${
-              (!signinValues.email || !signinValues.password) &&
-              "pointer-events-none filter brightness-50"
-            } hover:bg-black hover:border-2 hover:border-purple-600 border-2 border-transparent px-10 py-3 bg-button-gray rounded-md`}
+            type="submit"
+            className={`
+             ${!isValid && "pointer-events-none filter brightness-50"}
+             hover:bg-black hover:border-2 hover:border-purple-600 border-2 border-transparent px-10 py-3 bg-button-gray rounded-md`}
           >
             SIGN IN
           </button>
@@ -86,7 +89,6 @@ const SigninForm: React.FC = () => {
             Forgot Password?
           </button>
         </div>
-        <p className="text-xs  text-red-800">{invalidCredentials}</p>
         <div className="flex items-center gap-5 pb-10">
           <div className="w-full border-b-[1px] border-white/20"></div>
           OR
