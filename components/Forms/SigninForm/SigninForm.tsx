@@ -1,17 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { signinValidation } from "../../../utils/yupConfig/yupConfig";
 
+import EmailVerification from "./ForgotPassword/EmailVerification/EmailVerification";
+import ResetPassword from "./ForgotPassword/ResetPassword/ResetPassword";
+
 interface SigninValues {
   email: string;
   password: string;
 }
 
+interface EmailVerify {
+  email: string;
+}
+
+interface NewPasswordValue {
+  password: string;
+}
+
 const SigninForm: React.FC = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const {
     register,
@@ -22,16 +34,77 @@ const SigninForm: React.FC = () => {
     resolver: yupResolver(signinValidation),
   });
 
-  const router = useRouter();
+  const [invalidCredentials, setInvalidCredentials] = useState<boolean>(false);
+  const [forgotCredentials, setForgotCredentials] = useState<boolean>(false);
+
+  const [validEmail, setValidEmail] = useState<boolean>(false);
+  const [userId, setUserId] = useState<object>({
+    user_id: "",
+  });
+
+  const [error, setError] = useState<boolean>(false);
+
+  const handleForgotPassword = () => {
+    setForgotCredentials(true);
+  };
+
+  const handleCancelReset = () => {
+    setValidEmail(false);
+    setForgotCredentials(false);
+    setError(false)
+  };
 
   const handleSigninSubmit = async (signinValues: SigninValues) => {
     let options = { redirect: false, ...signinValues };
     const res = await signIn("credentials", options);
     if (res?.error) {
-      console.log("wrong credentials");
+      setInvalidCredentials(true);
     } else {
-      console.log("logged in");
+      setInvalidCredentials(false);
     }
+  };
+
+  const handleEmailRecoverySubmit = async (emailValues: EmailVerify) => {
+    await fetch("/api/forgot-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...emailValues }),
+    })
+      .then((response) => {
+        if (!response.ok) setError(true);
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
+          setUserId({
+            userId: data._id,
+          });
+          setValidEmail(true);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleNewPasswordSubmit = async (
+    newPasswordValue: NewPasswordValue
+  ) => {
+    await fetch("/api/forgot-password/new-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...newPasswordValue, ...userId }),
+    })
+      .then((response) => {
+        if (!response.ok) console.log("error");
+        return response.json();
+      })
+      .then(() => {
+        setForgotCredentials(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
@@ -44,8 +117,20 @@ const SigninForm: React.FC = () => {
 
   return (
     <div className="text-white flex flex-col justify-center items-center w-screen h-full mt-16 mb-4">
+      {forgotCredentials && (
+        <EmailVerification
+          handleEmailRecoverySubmit={handleEmailRecoverySubmit}
+          handleCancelReset={handleCancelReset}
+          error={error}
+        />
+      )}
+      {validEmail && forgotCredentials && (
+        <ResetPassword
+          handleNewPasswordSubmit={handleNewPasswordSubmit}
+          handleCancelReset={handleCancelReset}
+        />
+      )}
       <h1 className="text-3xl pt-10 pb-6">Sign In</h1>
-
       <form
         onSubmit={handleSubmit(handleSigninSubmit)}
         action="POST"
@@ -53,6 +138,11 @@ const SigninForm: React.FC = () => {
       >
         <div className="flex flex-col gap-4 ">
           <p>Do you have an HBO Max Account?</p>
+          {invalidCredentials && (
+            <p className="text-red-500 bg-red-800/20 rounded-md py-3 px-2">
+              The email address or password is incorrect. Please try again.
+            </p>
+          )}
           <input
             {...register("email", {
               required: true,
@@ -85,7 +175,11 @@ const SigninForm: React.FC = () => {
           >
             SIGN IN
           </button>
-          <button type="button" className="text-sm text-violet-400/80">
+          <button
+            onClick={handleForgotPassword}
+            type="button"
+            className="text-sm text-violet-400/80"
+          >
             Forgot Password?
           </button>
         </div>
