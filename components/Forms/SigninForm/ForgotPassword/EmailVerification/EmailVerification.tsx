@@ -30,13 +30,13 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({handleEmailRecover
       <form
         action="POST"
         onSubmit={handleSubmit(handleEmailRecoverySubmit)}
-        className="md:h-[350px] md:w-[560px] md:gap-4 wabsolute flex flex-col justify-center items-start gap-3 bg-[rgb(25,25,25)] rounded-md  h-[290px] w-[450px] z-[98] px-10"
+        className="md:h-[350px] md:w-[560px] md:gap-4 wabsolute flex flex-col justify-center items-start gap-3 bg-[rgb(25,25,25)] rounded-md  h-[320px] w-[450px] z-[98] px-10"
       >
         <h1 className="md:text-2xl text-lg font-semibold">
           Reset Your Password
         </h1>
         {error && (
-          <p className="text-red-500 bg-red-800/20 rounded-md py-3 px-2 w-full">
+          <p className="text-red-500 bg-red-800/20 rounded-md py-1 px-4 w-full">
             Email not found.
           </p>
         )}
