@@ -5,7 +5,15 @@ const UserSchema = require("../../../../models/UserModel");
 const MovieSchema = require("../../../../models/MovieModel");
 const TVSchema = require("../../../../models/TVModel");
 
-const favourites = async (req: NextApiRequest, res: NextApiResponse) => {
+
+interface Data {
+  firstName: string | undefined;
+  lastName: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+}
+
+const favourites = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await dbConnect();
   const {
     method,
@@ -27,6 +35,8 @@ const favourites = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     return res.status(400);
   }
+
+  
 };
 
 export default favourites;

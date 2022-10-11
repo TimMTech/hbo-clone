@@ -39,7 +39,7 @@ const PlanForm: React.FC = () => {
   });
   const [userId, setUserId] = useState<User_id>({ user_id: "" });
 
-  const [step, setStep] = useState<string>("3");
+  const [step, setStep] = useState<string>("1");
 
   const handlePlanSelection = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (e.target instanceof HTMLElement) {

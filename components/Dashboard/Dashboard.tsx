@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import NextLink from "next/link";
 
 interface SessionProp {
@@ -47,10 +48,11 @@ const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
           </div>
           <h2 className="text-white py-2">{user.firstName}</h2>
         </div>
-
-        <button className="hover:border-2 hover:border-purple-600 border-2 border-transparent hover:bg-black text-white text-lg font-bold px-6 py-2 bg-button-gray rounded-md my-6">
-          SETTINGS
-        </button>
+        <NextLink href={`/user/${user._id}/settings`}>
+          <button className="hover:border-2 hover:border-purple-600 border-2 border-transparent hover:bg-black text-white text-lg font-bold px-6 py-2 bg-button-gray rounded-md my-6">
+            SETTINGS
+          </button>
+        </NextLink>
         <div className="md:px-12 lg:px-16 w-full px-8">
           <div className="flex gap-10 items-center">
             <h2

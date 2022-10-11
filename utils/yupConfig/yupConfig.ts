@@ -48,3 +48,17 @@ export const newPasswordValidation = Yup.object().shape({
     .required("Enter a valid password.")
     .min(6, "Password must be 6 characters or more."),
 });
+
+export const settingsEmailValidation = Yup.object().shape({
+  email: Yup.string()
+    .required("Enter a valid email.")
+    .email(
+      `Email must have ${"@"} and end with ${"[.com, .net, .gov, etc]"} .`
+    ),
+});
+
+export const settingsPasswordValidation = Yup.object().shape({
+  password: Yup.string()
+    .required("Enter a valid password.")
+    .min(6, "Password must be 6 characters or more."),
+});

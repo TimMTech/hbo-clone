@@ -130,7 +130,7 @@ const SigninForm: React.FC = () => {
           handleCancelReset={handleCancelReset}
         />
       )}
-      <h1 className="text-3xl pt-10 pb-6">Sign In</h1>
+      <h1 className="text-3xl font-semibold pt-10 pb-6">Sign In</h1>
       <form
         onSubmit={handleSubmit(handleSigninSubmit)}
         action="POST"
