@@ -49,10 +49,16 @@ const settings = async (req: NextApiRequest, res: NextApiResponse) => {
           return res.status(400).json(error);
         });
     }
-    if (req.body.firstName) {
+    if (req.body.fullName) {
+      const fullNameSplit = req.body.fullName.split(/[\s,]+/);
       const user = await UserSchema.findByIdAndUpdate(
         { _id: id },
-        { firstName: req.body.firstName }
+        {
+          $set: {
+            firstName: fullNameSplit[0],
+            lastName: fullNameSplit[1]
+          }
+        }
       );
       user
         .save()

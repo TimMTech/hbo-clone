@@ -62,3 +62,7 @@ export const settingsPasswordValidation = Yup.object().shape({
     .required("Enter a valid password.")
     .min(6, "Password must be 6 characters or more."),
 });
+
+export const settingsFullNameValidation = Yup.object().shape({
+  fullName: Yup.string().required("Enter a valid name.")
+})

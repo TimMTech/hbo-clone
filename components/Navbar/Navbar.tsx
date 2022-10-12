@@ -38,6 +38,10 @@ const Navbar: React.FC = () => {
     setOpenMenu(false);
   };
 
+  const handleCloseProfileMenu = () => {
+    setOpenProfileMenu(false)
+  }
+
   useEffect(() => {
     const changeNavBackground = () => {
       if (
@@ -103,13 +107,21 @@ const Navbar: React.FC = () => {
                 {openProfileMenu && (
                   <ul className="absolute flex flex-col justify-evenly items-start bg-matte-black right-[3%] mt-2 rounded-md p-1 w-[150px]">
                     <NextLink href={`/user/${session?.user._id}`}>
-                      <li className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5">
+                      <li
+                        onClick={handleCloseProfileMenu}
+                        className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5"
+                      >
                         My Stuff
                       </li>
                     </NextLink>
-                    <li className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5">
-                      Settings
-                    </li>
+                    <NextLink href={`/user/${session?.user._id}/settings`}>
+                      <li
+                        onClick={handleCloseProfileMenu}
+                        className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5"
+                      >
+                        Settings
+                      </li>
+                    </NextLink>
                     <li className=" border-white/20 border w-full my-1 "></li>
                     <li
                       className="hover:bg-white/20 hover:rounded-sm w-full py-3 pl-5"

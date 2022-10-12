@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import NextLink from "next/link";
 
 interface SessionProp {
-  session: any;
+  user: any;
 }
 
 interface Favourites {
@@ -13,7 +13,7 @@ interface Favourites {
   poster_path: string;
 }
 
-const Dashboard: React.FC<SessionProp> = ({ session: { user } }) => {
+const Dashboard: React.FC<SessionProp> = ({ user }) => {
   const [movies, setMovies] = useState<any>();
   const [tv, setTV] = useState<any>();
   const [option, setOption] = useState<boolean>(false);
