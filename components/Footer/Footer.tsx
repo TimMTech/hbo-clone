@@ -25,22 +25,38 @@ const Footer: React.FC = () => {
 
         <ul className="flex items-center gap-2">
           <li>
-            <a>
+            <a
+              href="https://github.com/TimMTech"
+              target="_blank"
+              rel="noreferrer"
+            >
               <AiFillGithub size={30} />
             </a>
           </li>
           <li>
-            <a>
+            <a
+              href="https://www.facebook.com/tim.mukhamedov"
+              target="_blank"
+              rel="noreferrer"
+            >
               <AiFillFacebook size={30} />
             </a>
           </li>
           <li>
-            <a>
+            <a
+              href="https://www.instagram.com/forevertech93/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <AiFillInstagram size={30} />
             </a>
           </li>
           <li>
-            <a>
+            <a
+              href="https://www.linkedin.com/in/timur-mukhamedov-50b3b6221/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <AiFillLinkedin size={30} />
             </a>
           </li>

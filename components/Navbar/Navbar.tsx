@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
                   <GoDashboard size={27} onClick={handleOpenProfileMenu} />
                 </li>
                 {openProfileMenu && (
-                  <ul className="absolute flex flex-col justify-evenly items-start bg-matte-black right-[3%] mt-2 rounded-md p-1 w-[150px]">
+                  <ul className="absolute flex flex-col justify-evenly items-start bg-[rgb(25,25,25)] right-[3%] mt-2 rounded-md p-1 w-[150px]">
                     <NextLink href={`/user/${session?.user._id}`}>
                       <li
                         onClick={handleCloseProfileMenu}
