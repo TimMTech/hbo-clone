@@ -24,7 +24,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     <div className="w-full h-full min-h-screen p-8 ">
       <h1 className="text-white text-2xl font-semibold mb-2">
         {router.query.value === undefined || errors
-          ? "Our Popular Collection"
+          ? "Our Collection"
           : "Search Results"}
       </h1>
       {router.query.value === undefined || errors ? (

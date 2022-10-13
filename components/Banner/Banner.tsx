@@ -1,16 +1,16 @@
 import NextImage from "next/image";
 import NextLink from "next/link";
 import HBO_MAX_BANNER_SMALL_DEVICE from "/public/static/image/HBO_MAX_BANNER_SMALL_DEVICE.jpeg";
+import {useSession} from "next-auth/react"
 
 const Banner: React.FC = () => {
+
+  const {data: session } = useSession()
   return (
     <div className="overflow-hidden">
       <div className="sm:mt-[-2.7rem] sm:h-[320px]  md:h-[390px] lg:h-[530px] relative ">
         <video autoPlay loop muted className="sm:flex hidden">
-          <source
-            src="static/video/BANNER_VIDEO.mp4"
-            type="video/mp4"
-          />
+          <source src="static/video/BANNER_VIDEO.mp4" type="video/mp4" />
         </video>
         <div className="sm:absolute sm:image-inset" />
 
@@ -33,8 +33,11 @@ const Banner: React.FC = () => {
           <p className="font-extralight pb-3">
             Stream must-see movies, series, documentaries, and more.
           </p>
+
           <button className="hover:bg-none hover:bg-black hover:shadow-[inset_0_0_0_2px] hover:shadow-indigo-600 px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-md ">
-            <NextLink href="/auth/subscribe">SIGN UP</NextLink>
+            <NextLink href={session ? "/tv" : "/auth/subscribe"}>
+              {session ? "SEE MORE" : "SIGN UP"}
+            </NextLink>
           </button>
         </div>
       </div>
