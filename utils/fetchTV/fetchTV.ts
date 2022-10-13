@@ -1,6 +1,7 @@
 interface TV {
   id: string;
   season_number: string;
+  episode_number: string;
   page:number;
 }
 
@@ -27,6 +28,14 @@ export const fetchSingleTVSeasons: Function = async (id: TV, season_number:TV) =
   const singleTVSeasons = await res.json()
   return singleTVSeasons
 };
+
+export const fetchSingleTVEpisodes: Function = async (id: TV, season_number:TV, episode_number:TV) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${id}/season/${season_number}/episode/${episode_number}?api_key=b802b4a83ff17e57417a263b981797fb&page=1`
+  );
+  const singleTVEpisodes = await res.json()
+  return singleTVEpisodes
+}
 
 export const fetchSimilarTV: Function = async (id: TV) => {
   const res = await fetch(

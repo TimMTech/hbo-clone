@@ -25,6 +25,7 @@ interface Episodes {
   name: string;
   still_path: string;
   runtime: number;
+  season_number: number;
 }
 
 interface TV {
@@ -96,6 +97,7 @@ const Single_TV: React.FC<SingleTVProps> = ({
   };
 
   const handleSeasonChange = async (e: React.MouseEvent<HTMLDivElement>) => {
+    
     fetch(
       `https://api.themoviedb.org/3/tv/${id}/season/${e.currentTarget.dataset.set}?api_key=b802b4a83ff17e57417a263b981797fb&page=1`
     )
@@ -232,14 +234,25 @@ const Single_TV: React.FC<SingleTVProps> = ({
           {episodes
             ?.filter((item: Episodes) => item.still_path !== null)
             .map((episode: Episodes) => {
-              const { episode_number, name, still_path, runtime } = episode;
+              const {
+                episode_number,
+                name,
+                still_path,
+                runtime,
+                season_number,
+              } = episode;
               return (
                 <div key={episode_number} className="text-white">
-                  <img
-                    src={`https://image.tmdb.org/t/p/original${still_path}`}
-                    alt=""
-                    className=""
-                  />
+                  <NextLink
+                    href={`/tv/${id}/season/${season_number}/episode/${episode_number}`}
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/original${still_path}`}
+                      alt=""
+                      className="hover:border-2 hover:border-indigo-600 border-2 border-transparent cursor-pointer "
+                    />
+                  </NextLink>
+
                   <div className="pt-2 pb-4">
                     <h2 className="font-bold">
                       {still_path && episode_number + ". " + name}{" "}

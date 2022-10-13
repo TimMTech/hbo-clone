@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     await fetchSimilarTV(id),
   ]);
   const [singleTV, similarTV] = await Promise.all([singleTVRes, similarTVRes]);
-
+  
   return {
     props: {
       singleTV,
