@@ -11,11 +11,11 @@ import {
 import { fetchTopRatedTV } from "../utils/fetchTV/fetchTV";
 import { fetchPopularPeople } from "../utils/fetchPeople/fetchPeople";
 import Banner from "../components/Banner/Banner";
-import TopRated_Movies from "../components/Movies/Top_Rated/Top_Rated_Movies";
-import Upcoming_Movies from "../components/Movies/Upcoming/Upcoming_Movies";
-import Theatres_Movies from "../components/Movies/Theatres/Theatres_Movies";
-import TopRated_TV from "../components/TV/Top_Rated/Top_Rated_TV";
-import Popular_People from "../components/People/Popular/Popular_People";
+import TopRated_Movies from "../components/Movies/Carousel/Top_Rated/Top_Rated_Movies";
+import Upcoming_Movies from "../components/Movies/Carousel/Upcoming/Upcoming_Movies";
+import Theatres_Movies from "../components/Movies/Carousel/Theatres/Theatres_Movies";
+import TopRated_TV from "../components/TV/Carousel/Top_Rated/Top_Rated_TV";
+import Popular_People from "../components/People/Carousel/Popular/Popular_People";
 import Footer from "../components/Footer/Footer";
 
 const Home: NextPage = ({

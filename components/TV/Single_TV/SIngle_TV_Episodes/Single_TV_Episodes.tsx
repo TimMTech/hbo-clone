@@ -97,7 +97,7 @@ const Single_TV_Episodes: React.FC<SingleTVEpisodesProps> = ({
             );
           })}
       </div>
-      <div className=" md:grid md:grid-cols-2 md:gap-0 lg:text-lg text-sm flex flex-col gap-4 py-4 px-8 text-white">
+      <div className=" md:grid md:grid-cols-2 md:gap-0 lg:text-lg text-sm flex flex-col gap-4 pb-4 px-8 text-white">
         <div className="flex flex-col gap-4">
           <div>
             <div className="w-full flex items-center justify-between">

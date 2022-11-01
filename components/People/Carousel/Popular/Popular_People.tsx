@@ -33,7 +33,7 @@ const Popular_People: React.FC<PopularPeopleResults> = ({
           return (
             <div
               key={id}
-              className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0 "
+              className="sm:w-[30%] md:w-[24%] lg:w-[17%] w-[33%] flex-shrink-0 h-full"
             >
               <NextLink href={`/people/${id}`}>
                 <img

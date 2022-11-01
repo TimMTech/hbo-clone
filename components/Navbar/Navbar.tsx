@@ -180,15 +180,15 @@ const Navbar: React.FC = () => {
                     className="hover:text-white cursor-pointer"
                     onClick={handleCloseMenu}
                   />
-                  <ul className="lg:text-2xl pl-1 flex flex-col gap-3">
-                    <li className="hover:text-white">
+                  <ul className="lg:text-2xl text-xl pl-1 flex flex-col gap-5">
+                    <li onClick={handleCloseMenu} className="hover:text-white">
                       <NextLink href={"/"}>Home</NextLink>
                     </li>
 
-                    <li className="hover:text-white">
+                    <li onClick={handleCloseMenu} className="hover:text-white">
                       <NextLink href={"/movies"}>Movies</NextLink>
                     </li>
-                    <li className="hover:text-white">
+                    <li onClick={handleCloseMenu} className="hover:text-white">
                       <NextLink href={"/tv"}>Series</NextLink>
                     </li>
                   </ul>
